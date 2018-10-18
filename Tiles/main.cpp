@@ -90,7 +90,8 @@ int main() {
 
 			Tile *a = new Tile;
 			*a = stamps[selectedTile];
-			*a.position = GetMousePosition(); // ???
+			// *a.position = GetMousePosition(); // ???
+			a.position = { 100.0f, 100.0f };
 
 			// new stamp 
 			// stampedArr[startIdx] = stamps[selectedTile]; // = not working
