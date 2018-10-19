@@ -134,8 +134,24 @@ Sprite::Sprite()
 Sprite::~Sprite()
 {
 	// unload textures
+	// spriteCells
 	for (int i = 0; i < frameCount; i++) {
-		UnloadTexture(spriteCells[i]);
+		UnloadTexture(activeCells[i]);
+	}
+	if (standingCells != NULL) {
+		for (int i = 0; i < standingCount; i++) {
+			UnloadTexture(standingCells[i]);
+		}
+	}
+	if(walkingCells != NULL) {
+		for (int i = 0; i < walkingCount; i++) {
+			UnloadTexture(walkingCells[i]);
+		}
+	}
+	if (climbingCells != NULL) {
+		for (int i = 0; i < climbingCount; i++) {
+			UnloadTexture(climbingCells[i]);
+		}
 	}
 
 	// delete arrays

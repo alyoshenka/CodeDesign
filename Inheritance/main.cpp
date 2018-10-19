@@ -1,6 +1,7 @@
 #include "Sprite.h"
 #include "raylib.h"
 #include <string>
+#include "Button.h"
 
 int main() {
 
@@ -15,18 +16,22 @@ int main() {
 	std::string names[] = { "assets/player_cheer1.png", "assets/player_stand.png" };
 	Sprite duderino(names, 2, 3.0f );
 
+	Button butt;
+
 	SetTargetFPS(60);
 	while (!WindowShouldClose()) {
 
-		myGuy.update(GetFrameTime());
+		// myGuy.update(GetFrameTime());
 		// duderino.update(GetFrameTime());
+		butt.update();
 
 		BeginDrawing();
 
 		ClearBackground(RAYWHITE);
 		
-		myGuy.draw();
+		// myGuy.draw();
 		// duderino.draw();
+		butt.draw();
 
 		EndDrawing();
 	}
