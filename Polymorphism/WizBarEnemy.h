@@ -14,7 +14,7 @@ public:
 	WizBarEnemy();
 	~WizBarEnemy();
 
-	virtual bool moveTo(const Vector2 &dest) = 0;
+	virtual bool moveTo(const Vector2 &dest);
 	void draw();
 };
 

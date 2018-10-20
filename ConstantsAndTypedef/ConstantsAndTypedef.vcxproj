@@ -20,10 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{190DD589-6155-4C74-9D65-3C87FB20C6D4}</ProjectGuid>
-    <RootNamespace>Polymorphism</RootNamespace>
+    <ProjectGuid>{E568B720-06ED-4967-A2D6-F02A272782DB}</ProjectGuid>
+    <RootNamespace>ConstantsAndTypedef</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
-    <ProjectName>Polymorphism_STL</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -132,23 +131,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Button2.cpp" />
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="WizBarBarbarian.cpp" />
-    <ClCompile Include="WizBarChort.cpp" />
-    <ClCompile Include="WizBarEnemy.cpp" />
-    <ClCompile Include="WizBarNecromancer.cpp" />
-    <ClCompile Include="WizBarPlayer.cpp" />
-    <ClCompile Include="WizBarWizard.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Button2.h" />
-    <ClInclude Include="WizBarBarbarian.h" />
-    <ClInclude Include="WizBarChort.h" />
-    <ClInclude Include="WizBarEnemy.h" />
-    <ClInclude Include="WizBarNecromancer.h" />
-    <ClInclude Include="WizBarPlayer.h" />
-    <ClInclude Include="WizBarWizard.h" />
+    <ClInclude Include="Clock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

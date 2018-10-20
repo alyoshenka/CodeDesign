@@ -1,19 +1,22 @@
 #include "WizBarNecromancer.h"
 
 
-WizBarNecromancer::WizBarNecromancer()
+WizBarNecromancer::WizBarNecromancer() : WizBarEnemy()
 {
 	mySprite = LoadTexture("assets/necro1.png");
 	speed = 0.005f;
+}
+
+WizBarNecromancer::WizBarNecromancer(std::string & fileName) : WizBarEnemy(fileName)
+{
 }
 
 WizBarNecromancer::~WizBarNecromancer()
 {
 }
 
-bool WizBarNecromancer::moveTo(const Vector2 & dest)
-{
-	// if very close
+bool WizBarNecromancer::moveTo(const Vector2 & dest) 
+{	// if very close
 	if (dest.x - position.x >= -1 && dest.x - position.x <= 1
 		&& position.y - dest.y >= -1 && dest.y - position.y <= position.y) {
 		// ^ pos and dest were flipped

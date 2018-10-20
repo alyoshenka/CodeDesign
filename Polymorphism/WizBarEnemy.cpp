@@ -1,7 +1,6 @@
 #include "WizBarEnemy.h"
 
 
-
 WizBarEnemy::WizBarEnemy(const std::string & fileName)
 {
 	mySprite = LoadTexture(fileName.c_str());
@@ -15,6 +14,12 @@ WizBarEnemy::WizBarEnemy()
 
 WizBarEnemy::~WizBarEnemy(){
 	UnloadTexture(mySprite);
+}
+
+bool WizBarEnemy::moveTo(const Vector2 & dest)
+{
+	// do nothing, override in subclass
+	return false;
 }
 
 void WizBarEnemy::draw()

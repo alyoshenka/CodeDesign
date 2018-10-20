@@ -5,7 +5,7 @@
 WizBarWizard::WizBarWizard()
 {
 	mySprite = LoadTexture("assets/wiz1.png");
-	blastRadius = 10.0f;
+	blastRadius = 100.0f;
 	blastTime = 1.0f;
 	speed = 0.0f;
 }

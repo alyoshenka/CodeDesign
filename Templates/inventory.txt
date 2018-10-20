@@ -1,0 +1,20 @@
+buckler +1,Not much known about this,1165,1
+buckler +2,Not much known about this,4165,1
+full plate +1,Not much known about this,2650,1
+hide armor +1,Not much known about this,1165,1
+large steel shield +1,Not much known about this,1170,1
+small wooden shield +1,Not much known about this,1153,1
+studded leather armor +2,Not much known about this,4175,1
+studded leather armor +2,It's glamered,6875,1
+tower shield +1,Not much known about this,1180,1
+potion of bull's strength,ruby-colored sugary odor taste & fuming flecked appearance,300,1
+potion of cat's grace,lake-colored vinegary odortaste viscous opaque appearance,300,1
+potion of cure light wounds,magenta-colored buttery odor/taste watery layered appearance,50,1
+potion of cure moderate wounds, green-colored sugary odor/taste effervescent flecked appearance,300,1
+potion of darkvision,brassy-colored lemony odor/taste oily clear appearance,300,1
+potion of delay poison, sapphire-colored dusty odor/taste bubbling clear appearance,300,1
+potion of jump,azure-colored acidic odor/taste oily phosphorescent appearance,50,1
+potion of lesser restoration,sapphire-colored dusty odor/taste vaporous layered appearance,300,1
+potion of mage armor,puce-colored salty odor/taste vaporous layered appearance,50,1
+potion of mage armor, neutral-colored sweet odor/taste watery opaque appearance,50,1
+potion of magic weapon, red-colored fruity odor/taste fuming translucent appearance,50,1

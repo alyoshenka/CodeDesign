@@ -1,7 +1,5 @@
 #include "WizBarChort.h"
 
-
-
 WizBarChort::WizBarChort() :WizBarEnemy()
 {
 	speed = 0.001f;
@@ -39,3 +37,14 @@ bool WizBarChort::moveTo(const Vector2 & dest)
 
 	return false;
 }
+
+
+// test!!
+//void WizBarChort::draw()
+//{
+//	// if alive
+//	if (isActive) {
+//		// offset for size
+//		DrawTexture(mySprite, position.x - 4, position.y - 8, WHITE);
+//	}
+//}
