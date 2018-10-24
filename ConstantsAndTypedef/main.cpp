@@ -18,6 +18,8 @@ int main() {
 
 	Clock c;
 
+	SetTargetFPS(60);
+
 	while (!WindowShouldClose()) {
 
 		// update all clocks

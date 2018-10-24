@@ -31,6 +31,8 @@ int main() {
 		}
 	}
 
+
+
 	// stamps
 
 	// t = top
@@ -48,8 +50,11 @@ int main() {
 	Tile stamps[] = { tl, tr, bl, br };
 	int selectedTile = -1;
 
+
 	Tile test("assets/mapTile_114.png");
 	test.position = { 100.0f, 100.0f };
+
+
 
 	Tile stampedArr[10]; // max 10 stamps
 	int startIdx = 0;
@@ -57,6 +62,8 @@ int main() {
 	for (int i = 0; i < 10; i++) {
 		stampedArr[i].show = false;
 	}
+
+	
 
 	SetTargetFPS(60);
 
@@ -91,11 +98,16 @@ int main() {
 			Tile *a = new Tile;
 			*a = stamps[selectedTile];
 			// *a.position = GetMousePosition(); // ???
-			a.position = { 100.0f, 100.0f };
+			// a->position = GetMousePosition();
+			a->position.x = GetMouseX();
+			a->position.y = GetMouseY(); // change after if this wasn't the problem
+			// set to show
+			// a->show = true; // should not be needed
 
 			// new stamp 
 			// stampedArr[startIdx] = stamps[selectedTile]; // = not working
 			stampedArr[startIdx] = *a;
+			// set to show
 
 			// stampedArr[startIdx].position = GetMousePosition();
 			
@@ -119,10 +131,10 @@ int main() {
 		}
 		
 		// user placed stams
-		for (int i = 0; i < 10; i++) {
-			// null value??
-			stampedArr[i].draw();
-		}
+		//for (int i = 0; i < 10; i++) {
+		//	// null value??
+		//	stampedArr[i].draw();
+		//}
 
 		// stamp tiles
 		for (int i = 0; i < 4; i++) {

@@ -16,12 +16,15 @@ void Clock::tick()
 {
 	// update angle	
 	// currentAngle += degreeOfRotation;
-	currentAngle += GetFrameTime(); // change for real time
+		// 1 sec = 1 rotation
+	currentAngle += GetFrameTime() * 2 * PI;
 
+	// not really needed
 	// constrain 0  - < 360
-	if (currentAngle >= 360) {
+	// wrong offset
+	/*if (currentAngle >= 360 / (2*PI)) {
 		currentAngle = currentAngle - 360;
-	}
+	}*/
 }
 
 Clock::Clock()

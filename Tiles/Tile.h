@@ -17,6 +17,6 @@ public:
 	~Tile();
 
 	void draw();
-	Tile operator = (const Tile &rhs);
+	Tile & operator = (const Tile &rhs);
 };
 

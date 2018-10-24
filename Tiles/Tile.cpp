@@ -33,15 +33,16 @@ void Tile::draw()
 	DrawTextureV(sprite, position, WHITE);
 }
 
-Tile Tile::operator=(const Tile & rhs)
+Tile& Tile::operator=(const Tile & rhs)
 {
-	Tile a;
-	a.size = rhs.size;
-	a.position = rhs.position;
+	// Tile a;
+	size = rhs.size;
+	position = rhs.position;
 	
 	// are textures different?
-	a.spritePointer = new Texture2D(*rhs.spritePointer);
-	a.sprite = *a.spritePointer;
+	// sprite = rhs.sprite;
+	spritePointer = new Texture2D(*rhs.spritePointer);
+	// sprite = new Texture2D(&spritePointer);
 
-	return a;
+	return *this;
 }
