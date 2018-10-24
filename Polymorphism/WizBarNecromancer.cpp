@@ -4,7 +4,7 @@
 WizBarNecromancer::WizBarNecromancer() : WizBarEnemy()
 {
 	mySprite = LoadTexture("assets/necro1.png");
-	speed = 0.005f;
+	speed = 40.0f;
 }
 
 WizBarNecromancer::WizBarNecromancer(std::string & fileName) : WizBarEnemy(fileName)
@@ -37,8 +37,8 @@ bool WizBarNecromancer::moveTo(const Vector2 & dest)
 	}
 
 	// move
-	position.x += speed * direction.x;
-	position.y -= speed * direction.y;
+	position.x += speed * direction.x * GetFrameTime();
+	position.y -= speed * direction.y * GetFrameTime();
 
 	return false;
 }

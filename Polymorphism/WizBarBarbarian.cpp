@@ -5,7 +5,7 @@
 WizBarBarbarian::WizBarBarbarian()
 {
 	mySprite = LoadTexture("assets/barb1.png");
-	speed = 0.005f;
+	speed = 50.0f;
 }
 
 

@@ -2,7 +2,7 @@
 
 WizBarChort::WizBarChort() :WizBarEnemy()
 {
-	speed = 0.001f;
+	speed = 20.0f;
 }
 
 
@@ -32,8 +32,8 @@ bool WizBarChort::moveTo(const Vector2 & dest)
 	}
 
 	// move
-	position.x += speed * direction.x;
-	position.y -= speed * direction.y;
+	position.x += speed * direction.x * GetFrameTime();
+	position.y -= speed * direction.y * GetFrameTime();
 
 	return false;
 }

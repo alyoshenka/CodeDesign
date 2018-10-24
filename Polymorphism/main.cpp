@@ -99,6 +99,8 @@ int main() {
 
 	Vector2 tempPosition = { 0, 0 };
 
+	SetTargetFPS(60);
+
 	while (!WindowShouldClose()) {
 
 		// ideally:

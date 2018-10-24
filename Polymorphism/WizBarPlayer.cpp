@@ -31,8 +31,8 @@ bool WizBarPlayer::moveTo(const Vector2 & dest)
 	}
 
 	// move
-	position.x += speed * direction.x;
-	position.y -= speed * direction.y;
+	position.x += speed * direction.x * GetFrameTime();
+	position.y -= speed * direction.y * GetFrameTime();
 
 	return false;
 }
@@ -40,6 +40,7 @@ bool WizBarPlayer::moveTo(const Vector2 & dest)
 WizBarPlayer::WizBarPlayer()
 {
 	mySprite = LoadTexture("assets/elf1.png");
+	speed = 100.0f;
 }
 
 WizBarPlayer::WizBarPlayer(const std::string & fileName)
@@ -48,6 +49,7 @@ WizBarPlayer::WizBarPlayer(const std::string & fileName)
 	UnloadTexture(mySprite);
 	// load new texture
 	mySprite = LoadTexture(fileName.c_str());
+	speed = 100.0f;
 }
 
 
