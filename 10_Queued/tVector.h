@@ -15,27 +15,35 @@ class tVector
 public:
 
 	// initializes the vector's default values
-	tVector()                          
+	tVector()
 	{
 		arrSize = 0; // nothing used yet
-		arrCapacity = 200; // seems good
+		arrCapacity = 0; // seems good
+		arr = new T[arrCapacity];
+	}
+
+	// overload
+	tVector(size_t _cap)
+	{
+		arrSize = 0; // nothing used yet
+		arrCapacity = _cap; // seems good
 		arr = new T[arrCapacity];
 	}
 
 	// destroys the underlying array
-	~tVector()                         
+	~tVector()
 	{
 		delete[] arr;
 	}
 
 	// returns a pointer to the underlying array
-	T *data()                          
+	T *data()
 	{
 		return arr; // right?
 	}
 
 	// resizes the vector to at least this many elements
-	void reserve(size_t newCapacity)   
+	void reserve(size_t newCapacity)
 	{
 		// if smaller
 		if (newCapacity < arrCapacity) {
@@ -57,7 +65,7 @@ public:
 	}
 
 	// adds an element to the end of the vector
-	void push_back(const T &value)     
+	void push_back(const T &value)
 	{
 		// if over, resize
 		if (arrSize >= arrCapacity) {
@@ -73,13 +81,13 @@ public:
 	}
 
 	// drops the last element of the vector
-	void pop_back()                    
+	void pop_back()
 	{
 		arrSize--; // all that is really needed
 	}
 
 	// returns the element at the given element
-	T &at(size_t index)               
+	T &at(size_t index)
 	{
 		// return val at idx
 		if (index <= arrSize) {
@@ -107,19 +115,19 @@ public:
 	}
 
 	// returns current number of elements
-	size_t size() const               
+	size_t size() const
 	{
 		return arrSize;
 	}
 
 	// returns maximum number of elements we can store
-	size_t capacity() const            
+	size_t capacity() const
 	{
 		return arrCapacity;
 	}
 
 	// overloaded constructor
-	tVector(const tVector &vec) 
+	tVector(const tVector &vec)
 	{
 		// init vals
 		arrSize = vec.arrSize;
@@ -139,7 +147,7 @@ public:
 	}
 
 	// = overload
-	tVector & operator = (const tVector & vec) 
+	tVector & operator = (const tVector & vec)
 	{
 		// init vals
 		arrSize = vec.arrSize;
@@ -157,7 +165,7 @@ public:
 	}
 
 	// [] overload
-	T & operator [] (size_t index){
+	T & operator [] (size_t index) {
 		return arr[index];
 	}
 
@@ -178,7 +186,7 @@ public:
 		if (arrSize >= arrCapacity) {
 			arrSize = arrCapacity - 1;
 		}
-		
+
 		// copy data over
 		for (size_t i = 0; i <= arrSize; i++) {
 			newArr[i] = arr[i];
@@ -192,8 +200,8 @@ public:
 
 	// capacity = size(+1)
 	void shrink_to_fit() {
-		arrCapacity = arrSize+1; // anything else needed?
-		// +1 lets us continue to ise arrSize for indexed values
+		arrCapacity = arrSize + 1; // anything else needed?
+								   // +1 lets us continue to ise arrSize for indexed values
 	}
 
 	// clears arr
@@ -213,10 +221,9 @@ public:
 
 		// removes and keeps order
 		for (size_t i = index; i < arrSize; i++) {
-			arr[i] = arr[i+1];
+			arr[i] = arr[i + 1];
 		}
 		arrSize--;
 	}
 
 };
-
