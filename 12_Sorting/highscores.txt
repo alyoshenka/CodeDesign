@@ -1,0 +1,11 @@
+Bobbo,23,1
+Jimbo,51,3
+Dino,5,9
+Larry,55,2
+Curly,99,7
+Mo,84,8
+Carlos,2012,186
+Marty Mcfly,1955,200
+Emmett Brown,2075,250
+Einstein,1855,210
+Khoshekh,2012,185
