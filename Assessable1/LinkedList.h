@@ -1,5 +1,6 @@
 #pragma once
 #include <cassert>
+#include <stddef.h>
 
 // more functions to be implemented
 
@@ -22,15 +23,8 @@ class LinkedList {
 	// starting node
 	Node * head;
 
-	
-
-	// testing for iterator implementation
-	// iterator beginItr;
-	// iterator endItr;
-
 public:
 
-	// SHOULD THIS BE PUBLIC??
 	// iterator
 	class iterator {
 		// current node being operated upon
@@ -41,7 +35,7 @@ public:
 		// destructor
 		~iterator(); // not sure
 
-					 // does iterator point to same node?
+		// does iterator point to same node?
 		bool operator==(const iterator& rhs) const;
 		// does iterator point to different node?
 		bool operator!=(const iterator& rhs) const;
@@ -233,13 +227,6 @@ typename LinkedList<T>::iterator LinkedList<T>::begin() {
 	// making this the first
 	// deletion of n??
 
-	//// return head;
-	//Node * n = new Node;
-	//n->next = head;
-	//// n.data = nullptr;
-	//// n.previous = nullptr;
-
-	//iterator temp(n);
 	iterator temp(head);
 	return temp;
 }
@@ -252,26 +239,22 @@ typename LinkedList<T>::iterator LinkedList<T>::end() {
 
 	// end = last because that makes sense to me
 
+	// temporary pointer
 	Node * idek;
 	idek = head;
+
 	// get to end
-	while (idek->next != nullptr) {
+	while (idek->next != nullptr) { // NULL
 		idek = idek->next;
 	}
-
+	
 	// new last node
 	Node * n = new Node;
-	n->previous = idek;
+	n->previous = idek; // so we can iterate backwards
 
 	iterator temp(n);
 
-	//return temp2;	
-	// Node * n = new Node;
-	// n.data = nullptr;
-	// n.next = nullptr;
-	// temp->previous = idek;
-	// iterator temp(n);
-
+	// delete idek;
 
 	return temp;
 }
@@ -286,7 +269,7 @@ LinkedList<T>::iterator::iterator(Node * n)
 {
 	// cur = n;
 	cur = n;
-	cur->data = n->data;
+	cur->data = n->data; 
 	cur->previous = n->previous;
 	cur->next = n->next;
 	// return *this;
