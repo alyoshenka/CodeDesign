@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 // reorganize functions
 // check resize for index being 1 off
@@ -29,11 +30,11 @@ public:
 	DynamicArray& operator = (const DynamicArray& _arr);
 
 	// add value to back
-	void push_back(T& val);
+	void push_back(const T& val);
 	// pop value off back
 	void pop_back();
 	// add value to front
-	void push_front(T& val);
+	void push_front(const T& val);
 	// pop value from front
 	void pop_front();
 
@@ -46,6 +47,9 @@ public:
 	void resize();
 	// clears but maintains size
 	void clear();
+
+	// for testing
+	void show();
 };
 
 template<typename T>
@@ -93,28 +97,28 @@ DynamicArray<T> & DynamicArray<T>::operator=(const DynamicArray & _arr)
 template<typename T>
 void DynamicArray<T>::add(T item, size_t idx)
 {
-	// TEST 
+	// TEST this
+
+	// increment size
+	arrSize++;
 		
 	// if too small
 	if (arrSize >= arrCapacity) {
 		// make more space
-		resize(arrCapacity * GROWTH_FACTOR);
+		resize();
 	}
 
 	// if in middle
 	if (idx < arrSize) {
 		// iterate through array
-		for (int i = idx; i < arrSize; i++) {
+		for (int i = arrSize - 2; i >= idx; i--) {
 			// move elements over
-			arr[i] = arr[i + 1];
+			arr[i+1] = arr[i];
 		}
 	}
 
 	// put element in
 	arr[idx] = item;
-
-	// increment size
-	arrSize++;
 
 }
 
@@ -144,7 +148,7 @@ bool DynamicArray<T>::removedOrdered(size_t idx)
 	}
 
 	// iterate through array
-	for (int i = idx; idx < arrSize; idx++) {
+	for (int i = idx; i < arrSize; i++) {
 		// move each element back
 		arr[i] = arr[i + 1];
 	}
@@ -164,10 +168,15 @@ void DynamicArray<T>::resize(size_t newCapacity)
 
 	// change vals
 	arrCapacity = newCapacity;
+
 	// arrSize shouldn't need to be changed
 
 	// copy data over
-	newArr = arr;
+	// newArr = arr;
+	// copy data over
+	for (int i = 0; i <= arrSize; i++) {
+		newArr[i] = arr[i];
+	}
 
 	// delete old arr
 	delete[] arr;
@@ -200,7 +209,19 @@ void DynamicArray<T>::clear()
 }
 
 template<typename T>
-void DynamicArray<T>::push_back(T & val)
+void DynamicArray<T>::show()
+{
+	std::cout << "Array values" << std::endl;
+	for (int i = 0; i < arrSize; i++) {
+		std::cout << arr[i] << std::endl;
+	}
+	std::cout << "S: " << arrSize << std::endl;
+	std::cout << "C: " << arrCapacity << std::endl;
+	std::cout << std::endl;
+}
+
+template<typename T>
+void DynamicArray<T>::push_back(const T & val)
 {
 	// if needed
 	resize();
@@ -218,21 +239,21 @@ void DynamicArray<T>::pop_back()
 }
 
 template<typename T>
-void DynamicArray<T>::push_front(T & val)
+void DynamicArray<T>::push_front(const T & val)
 {
+	// increment
+	arrSize++;
+
 	// if needed
 	resize();
 
 	// move everything forward
-	for (int i = 0; i < arrSize; i++) {
-		arr[i] = arr[i + 1];
+	for (int i = arrSize - 2; i >= 0; i--) {
+		arr[i+1] = arr[i];
 	}
 
 	// put into array
 	arr[0] = val;
-
-	// increment
-	arrSize++;
 }
 
 template<typename T>

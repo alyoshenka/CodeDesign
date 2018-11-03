@@ -249,14 +249,13 @@ typename LinkedList<T>::iterator LinkedList<T>::end() {
 	}
 	
 	// new last node
-	Node * n = new Node;
+	static Node * n = new Node;
 	n->previous = idek; // so we can iterate backwards
 
 	iterator temp(n);
 
-	// delete idek;
-
 	return temp;
+
 }
 
 // iterator
