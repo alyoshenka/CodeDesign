@@ -233,29 +233,7 @@ typename LinkedList<T>::iterator LinkedList<T>::begin() {
 
 template <typename T>
 typename LinkedList<T>::iterator LinkedList<T>::end() {
-
-	// this is a weird one because it needs to be a null pointer I think
-	// make new node with null data but previous == last
-
-	// end = last because that makes sense to me
-
-	// temporary pointer
-	Node * idek;
-	idek = head;
-
-	// get to end
-	while (idek->next != nullptr) { // NULL
-		idek = idek->next;
-	}
-	
-	// new last node
-	static Node * n = new Node;
-	n->previous = idek; // so we can iterate backwards
-
-	iterator temp(n);
-
-	return temp;
-
+	return iterator(nullptr);
 }
 
 // iterator
@@ -266,12 +244,7 @@ typename LinkedList<T>::iterator LinkedList<T>::end() {
 template<typename T>
 LinkedList<T>::iterator::iterator(Node * n)
 {
-	// cur = n;
 	cur = n;
-	cur->data = n->data; 
-	cur->previous = n->previous;
-	cur->next = n->next;
-	// return *this;
 }
 
 template<typename T>

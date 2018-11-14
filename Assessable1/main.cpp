@@ -7,7 +7,11 @@
 
 int main() {
 
-	
+	// expected values are commented and printed for easy
+	// checks with actual output values
+
+	std::cout << "Linked List" << std::endl;
+
 	LinkedList<int> list1;
 	std::cout << "0=" << list1.count() << std::endl; // 0
 	std::cout << "1=" << list1.empty() << std::endl; // 1
@@ -27,44 +31,52 @@ int main() {
 
 	std::cout << std::endl;
 
-	/*LinkedList<int>::iterator itr = list1.begin();
+	LinkedList<int>::iterator itr = list1.begin();
 	LinkedList<int>::iterator itr2 = list1.end();
+	// they should both be null
 	std::cout << "0=" << (itr == itr2) << std::endl;
 
-	std::cout << *itr << std::endl;
-	std::cout << *itr2 << std::endl;
+	std::cout << std::endl;
 
-	std::list<int> test;
-	test.push_back(1);
-	std::list<int>::iterator testItr = test.end();*/
-	// std::cout << *(test.end()) << std::endl;
-
-	for (auto it = list1.begin(); it != list1.end(); it++) {
+	// check for correct iteration through list
+	for (auto it = list1.begin(); it != list1.end(); it++) { // 432
 		std::cout << (*it) << std::endl;
 	}
-	for (auto it = list1.begin(); it != list1.end(); ++it) {
-		std::cout << (*it) << std::endl;
-	}
+	// this doesn't work, but there should be a way to iterate backwards
+	//for (auto it = list1.end(); it != list1.begin(); it--) { // 234
+	//	std::cout << (*it) << std::endl;
+	//}
 	
+	std::cout << std::endl;
+	std::cout << "Dynamic Array" << std::endl;
 
-	/*DynamicArray<int> test2;
+	DynamicArray<int> test2;
 	test2.push_front(7);
 	test2.push_front(6);
 	test2.push_back(8);
 	test2.push_back(9);
-
 	test2.push_front(5);
 	test2.add(10, 3);
-	test2.show();
-
-	test2.remove(2);
-	test2.show();
-	test2.removedOrdered(2);
-	test2.show();
+	test2.show(); // 5 6 7 10 8 9 
+	test2.remove(2); 
+	test2.show(); // 5 6 9 10 8
+	test2.removedOrdered(2); 
+	test2.show(); // 5 6 10 8
 	test2.clear();
-	test2.show();
-	*/
+	test2.show(); // nothing
 
+	std::cout << std::endl;
+
+	DynamicArray<int> test3;
+	test3.push_front(1);
+	test3.push_back(5);
+	test3.show(); // 1 5
+	int test3Arr[3] = { 2, 3, 4 };
+	test3.addArr(test3Arr, 3, 1);
+	test3.show(); // 1 2 3 4 5
+
+	// possible problem is trying to delete test3Arr when this has already been handled
+	
 	system("pause");
 	return 0;
 }

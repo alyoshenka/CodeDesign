@@ -37,9 +37,11 @@ public:
 	void push_front(const T& val);
 	// pop value from front
 	void pop_front();
-
-	void add(T item, size_t idx); // make work for more than one item
-								  // was it removed successfully?
+	// add item at index
+	void add(T item, size_t idx); 
+	// arr array at index
+	void addArr(T item[], size_t arrLen, size_t idx);
+	// was it removed successfully?
 	bool remove(size_t idx);
 	bool removedOrdered(size_t idx);
 	void resize(size_t newSize);
@@ -97,7 +99,6 @@ DynamicArray<T> & DynamicArray<T>::operator=(const DynamicArray & _arr)
 template<typename T>
 void DynamicArray<T>::add(T item, size_t idx)
 {
-	// TEST this
 
 	// increment size
 	arrSize++;
@@ -105,7 +106,7 @@ void DynamicArray<T>::add(T item, size_t idx)
 	// if too small
 	if (arrSize >= arrCapacity) {
 		// make more space
-		resize();
+		resize(arrSize);
 	}
 
 	// if in middle
@@ -120,6 +121,33 @@ void DynamicArray<T>::add(T item, size_t idx)
 	// put element in
 	arr[idx] = item;
 
+}
+
+template<typename T>
+void DynamicArray<T>::addArr(T item[], size_t arrLen, size_t idx)
+{
+	// increment size
+	arrSize += arrLen;
+
+	// if too small
+	if (arrSize >= arrCapacity) {
+		// make more space
+		resize(arrSize);
+	}
+
+	// if in middle
+	if (idx < arrSize) {
+		// iterate through array
+		for (int i = arrSize - 2; i >= idx; i--) {
+			// move elements over
+			arr[i + arrLen] = arr[i];
+		}
+	}
+
+	// put array in
+	for (int i = idx; i < idx + arrLen; i++) {
+		arr[i] = item[i - idx];
+	}
 }
 
 template<typename T>
