@@ -39,16 +39,28 @@ public:
 	void pop_front();
 	// add item at index
 	void add(T item, size_t idx); 
-	// arr array at index
-	void addArr(T item[], size_t arrLen, size_t idx);
 	// was it removed successfully?
 	bool remove(size_t idx);
-	bool removedOrdered(size_t idx);
+	// preserves order
+	bool removeOrdered(size_t idx);
 	void resize(size_t newSize);
 	// resize by growth factor if needed
 	void resize();
 	// clears but maintains size
 	void clear();
+	// returns arrSize
+	size_t sizeInUse() const;
+
+	// operator overload
+	T& operator [] (size_t index);
+	// const qualified
+	const T& operator [] (size_t index) const;
+
+	// sorting functions
+	void bubbleSortAscending();
+	void insertionSortAscending();
+	void mergeSortDescending(int p, int r);
+	void mergeDescending(int p, int q, int r);
 
 	// for testing
 	void show();
@@ -83,17 +95,16 @@ DynamicArray<T>::DynamicArray(const DynamicArray & _arr)
 template<typename T>
 DynamicArray<T> & DynamicArray<T>::operator=(const DynamicArray & _arr)
 {
-	// same as copy constructor
-	// is this right?
-	// change so I'm not reusing code
-
-	arr = new T[arrCapacity];
+	// init vals
 	arrSize = _arr.arrSize;
 	arrCapacity = _arr.arrCapacity;
+	arr = new T[arrCapacity];
 
 	for (int i = 0; i < arrSize; i++) {
 		arr[i] = _arr[i];
 	}
+
+	return *this;
 }
 
 template<typename T>
@@ -124,33 +135,6 @@ void DynamicArray<T>::add(T item, size_t idx)
 }
 
 template<typename T>
-void DynamicArray<T>::addArr(T item[], size_t arrLen, size_t idx)
-{
-	// increment size
-	arrSize += arrLen;
-
-	// if too small
-	if (arrSize >= arrCapacity) {
-		// make more space
-		resize(arrSize);
-	}
-
-	// if in middle
-	if (idx < arrSize) {
-		// iterate through array
-		for (int i = arrSize - 2; i >= idx; i--) {
-			// move elements over
-			arr[i + arrLen] = arr[i];
-		}
-	}
-
-	// put array in
-	for (int i = idx; i < idx + arrLen; i++) {
-		arr[i] = item[i - idx];
-	}
-}
-
-template<typename T>
 bool DynamicArray<T>::remove(size_t idx)
 {
 	// if invalid index
@@ -168,7 +152,7 @@ bool DynamicArray<T>::remove(size_t idx)
 }
 
 template<typename T>
-bool DynamicArray<T>::removedOrdered(size_t idx)
+bool DynamicArray<T>::removeOrdered(size_t idx)
 {
 	// if invalid idx
 	if (idx < 0 || idx >= arrSize) {
@@ -237,6 +221,105 @@ void DynamicArray<T>::clear()
 }
 
 template<typename T>
+size_t DynamicArray<T>::sizeInUse() const
+{
+	return arrSize;
+}
+
+template<typename T>
+T & DynamicArray<T>::operator[](size_t index)
+{
+	return arr[index];
+}
+
+template<typename T>
+const T & DynamicArray<T>::operator[](size_t index) const
+{
+	return arr[index];
+}
+
+template<typename T>
+void DynamicArray<T>::bubbleSortAscending()
+{
+	for (int i = 0; i < arrSize; i++) {
+		// int n = i;
+		for (int n = 0; n < arrSize - i - 1; n++) {
+			if (arr[n] > arr[n + 1]) {
+				// swap
+				T temp = arr[n + 1];
+				arr[n + 1] = arr[n];
+				arr[n] = temp;
+			}
+		}
+	}
+}
+
+template<typename T>
+void DynamicArray<T>::insertionSortAscending()
+{
+	for (int i = 0; i < arrSize; i++) {
+		for (int j = i; j > 0 && arr[j - 1] > arr[j]; j--) {
+			T temp = arr[j];
+			arr[j] = arr[j - 1];
+			arr[j - 1] = temp;
+		}
+	}
+}
+
+template<typename T>
+void DynamicArray<T>::mergeSortDescending(int p, int r)
+{
+	/*int p = 0;
+	int r = arrSize - 1;*/
+	int q = (p + r) / 2;
+
+	// terminate loop
+	if (q >= r || p > q) {
+		return;
+	}
+
+	// int p = 0;
+	// int r = arrSize - 1;
+	mergeSortDescending(p, q);
+	mergeSortDescending(q + 1, r);
+	mergeDescending(p, q, r);
+}
+
+template<typename T>
+void DynamicArray<T>::mergeDescending(int p, int q, int r)
+{
+	int leftEnd = q - p + 1;
+	int rightEnd = r - q;
+
+	T * L = new T[leftEnd];
+	T * R = new T[rightEnd];
+
+	for (int i = 0; i < leftEnd; i++) {
+		L[i] = arr[p + i];
+	}
+	for (int j = 0; j < rightEnd; j++) {
+		R[j] = arr[q + j + 1];
+	}
+
+	int i = 0;
+	int j = 0;
+
+	for (int k = p; k <= r; k++) {
+		if (j >= rightEnd || (i < leftEnd and L[i] >= R[j])) {
+			arr[k] = L[i];
+			i++;
+		}
+		else {
+			arr[k] = R[j];
+			j++;
+		}
+	}
+
+	delete[] L;
+	delete[] R;
+}
+
+template<typename T>
 void DynamicArray<T>::show()
 {
 	std::cout << "Array values" << std::endl;
@@ -288,5 +371,5 @@ template<typename T>
 void DynamicArray<T>::pop_front()
 {
 	// keeps order
-	this.removeOrdered(0);
+	removeOrdered(0);
 }

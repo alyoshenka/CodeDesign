@@ -1,5 +1,7 @@
 #include "LinkedList.h"
 #include "DynamicArray.h"
+#include "Stack.h"
+#include "Queue.h"
 #include <iostream>
 #include <list>
 
@@ -10,6 +12,11 @@ int main() {
 	// expected values are commented and printed for easy
 	// checks with actual output values
 
+	std::cout << "Alexi Most, Prog 2020" << std::endl;
+	std::cout << "Classes are separated by labels \nand "
+		"expected values are printed \nfor easy checking. " << std::endl;
+
+	std::cout << std::endl;
 	std::cout << "Linked List" << std::endl;
 
 	LinkedList<int> list1;
@@ -50,32 +57,62 @@ int main() {
 	std::cout << std::endl;
 	std::cout << "Dynamic Array" << std::endl;
 
-	DynamicArray<int> test2;
-	test2.push_front(7);
-	test2.push_front(6);
-	test2.push_back(8);
-	test2.push_back(9);
-	test2.push_front(5);
-	test2.add(10, 3);
-	test2.show(); // 5 6 7 10 8 9 
-	test2.remove(2); 
-	test2.show(); // 5 6 9 10 8
-	test2.removedOrdered(2); 
-	test2.show(); // 5 6 10 8
-	test2.clear();
-	test2.show(); // nothing
+	DynamicArray<int> arr1;
+	arr1.push_front(7);
+	arr1.push_front(6);
+	arr1.push_back(8);
+	arr1.push_back(9);
+	arr1.push_front(5);
+	arr1.add(10, 3);
+	arr1.show(); // 5 6 7 10 8 9 
+	arr1.remove(2); 
+	arr1.show(); // 5 6 9 10 8
+	arr1.removeOrdered(2); 
+	arr1.show(); // 5 6 10 8
+	arr1.clear();
+	arr1.show(); // nothing
 
 	std::cout << std::endl;
 
-	DynamicArray<int> test3;
-	test3.push_front(1);
-	test3.push_back(5);
-	test3.show(); // 1 5
-	int test3Arr[3] = { 2, 3, 4 };
-	test3.addArr(test3Arr, 3, 1);
-	test3.show(); // 1 2 3 4 5
+	DynamicArray<int> arr2;
+	arr2.push_back(4);
+	arr2.push_back(5);
+	arr2.push_back(3);
+	arr2.push_back(1);
+	arr2.push_back(2);
+	arr2.push_back(6);
+	arr2.bubbleSortAscending();
+	std::cout << "Bubble sort ascending" << std::endl;
+	arr2.show();
+	std::cout << "Merge sort descending" << std::endl;
+	arr2.mergeSortDescending(0, arr2.sizeInUse() - 1);
+	arr2.show();
+	std::cout << "Insertion sort ascending" << std::endl;
+	arr2.insertionSortAscending();
+	arr2.show();
 
-	// possible problem is trying to delete test3Arr when this has already been handled
+	std::cout << "Stack" << std::endl;
+
+	Stack<int> stack1;
+	std::cout << "1=" << stack1.empty() << std::endl; // 1
+	stack1.push(3);
+	stack1.push(2);
+	stack1.push(1);
+	std::cout << "1=" << stack1.top() << std::endl; // 1
+	std::cout << "3=" << stack1.size() << std::endl; // 3
+	stack1.pop();
+	std::cout << "2=" << stack1.top() << std::endl; // 2
+	std::cout << "2=" << stack1.size() << std::endl; // 2
+
+	std::cout << std::endl;
+	std::cout << "Queue" << std::endl;
+
+	Queue<int> queue1(5, 40);
+	std::cout << "0=" << queue1.empty() << std::endl; // 0
+	std::cout << "5=" << queue1.size() << std::endl; // 5
+	std::cout << "40=" << queue1.front() << std::endl; // 40
+	queue1.pop();
+	std::cout << "4=" << queue1.size() << std::endl; // 4
 	
 	system("pause");
 	return 0;
