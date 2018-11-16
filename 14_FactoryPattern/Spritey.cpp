@@ -13,7 +13,7 @@ Spritey::Spritey(const Spritey & s)
 	pos = s.pos;
 
 	rot = s.rot;
-	r1 = s.r1;
+	sourceRec = s.sourceRec;
 	r2 = s.r2;
 
 	/*r1.x = s.r1.x;
@@ -35,8 +35,8 @@ Spritey::Spritey(const std::string & filename, const std::string _sprType, float
 	texture = LoadTexture(filename.c_str());
 	pos = GetMousePosition();
 	rot = 0;
-	r1 = { 0, 0, (float)texture.width, (float)texture.height };
-	r2 = { 0, 0, r1.width * scale, r1.height * scale };
+	sourceRec = { 0, 0, (float)texture.width, (float)texture.height };
+	r2 = { 0, 0, sourceRec.width * scale, sourceRec.height * scale };
 }
 
 
@@ -46,7 +46,7 @@ void Spritey::operator=(const Spritey & s)
 	sprType = s.sprType;
 	pos = s.pos;
 	rot = s.rot;
-	r1 = s.r1;
+	sourceRec = s.sourceRec;
 	r2 = s.r2;
 	texture = s.texture;
 }
@@ -80,6 +80,6 @@ void Spritey::draw()
 	// r1 = part of texture
 	// r2 = location in window
 
-	DrawTexturePro(texture, r1, r2, { 0,0 }, rot, WHITE);
+	DrawTexturePro(texture, sourceRec, r2, { 0,0 }, rot, WHITE);
 	// DrawTextureV(texture, pos, WHITE);
 }

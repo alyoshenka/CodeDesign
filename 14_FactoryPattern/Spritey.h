@@ -8,7 +8,7 @@ public:
 	std::string sprType;
 	Vector2 pos;
 	float rot;
-	Rectangle r1, r2; // r1 = size of texture , r2 = calculated destination size
+	Rectangle sourceRec, r2; // r1 = size of texture , r2 = calculated destination size
 	Texture2D texture;
 
 	void translate(Vector2 delta); // move the sprites position by delta.

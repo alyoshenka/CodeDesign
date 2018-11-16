@@ -64,13 +64,13 @@ int main() {
 				sprites[i].translate(speed);
 				// check
 				if (sprites[i].pos.y > h) {
-					sprites[i].pos.y = 0 - sprites[i].r1.height;
+					sprites[i].pos.y = 0 - sprites[i].sourceRec.height;
 				}
 			}
 
 			// check collision with bullet
 			for (int j = 0; j < bullets.maxIdx; j++) {
-				if (CheckCollisionRecs(sprites[i].r1, bullets.projectiles[j])) {
+				if (CheckCollisionRecs(sprites[i].sourceRec, bullets.projectiles[j])) {
 					// make small
 					if (sprites[i].r2.width > 10) {
 						sprites[i].r2.width = sprites[i].r2.width / 2;

@@ -41,7 +41,7 @@ int main() {
 	LinkedList<int>::iterator itr = list1.begin();
 	LinkedList<int>::iterator itr2 = list1.end();
 	// they should both be null
-	std::cout << "0=" << (itr == itr2) << std::endl;
+	std::cout << "0=" << (itr == itr2) << std::endl; // 0
 
 	std::cout << std::endl;
 

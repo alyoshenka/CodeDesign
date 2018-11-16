@@ -33,8 +33,8 @@ Spritey * Falling::getRandom()
 	Spritey * s = new Spritey(spriteMasters[r]);
 	s->pos = GetMousePosition();
 	// DrawTexturePro is dumb
-	s->r1.x = GetMouseX();
-	s->r1.y = GetMouseY();
+	s->sourceRec.x = GetMouseX();
+	s->sourceRec.y = GetMouseY();
 	s->r2.x = GetMouseX();
 	s->r2.y = GetMouseY();
 	// s->texture = spriteMasters[r].texture;
