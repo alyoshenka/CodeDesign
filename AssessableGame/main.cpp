@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "Octopus.h"
+#include "menustate.h"
 
 int main() {
 
@@ -7,16 +7,38 @@ int main() {
 	int h = 500;
 
 	InitWindow(w, h, "OctoAdventure");
+	SetTargetFPS(60);
 
-	Octopus o;
+	gamestate * stateInstance = new menustate();
+	GameStates currentState = MENU;
 
 	while (!WindowShouldClose()) {
-		o.update();
+
+		// go to next state
+		GameStates nextState = stateInstance->next();
+		// if different state
+		if (nextState != currentState) {
+			// get new one
+			delete stateInstance;
+			// set up new one
+			setupGameState(stateInstance, nextState);
+			// make new = current
+			currentState = nextState;
+			continue;
+		}
+
+		stateInstance->update();
+
 		BeginDrawing();
-		ClearBackground(BLUE);
-		o.draw();
+
+		ClearBackground(BLACK); // just in case
+
+		stateInstance->draw();
+
 		EndDrawing();
 	}
+
+	delete stateInstance;
 
 	CloseWindow();
 

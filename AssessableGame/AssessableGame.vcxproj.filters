@@ -27,6 +27,24 @@
     <ClCompile Include="menustate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="level1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameoverstate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="detailstate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winstate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Octopus.h">
@@ -36,6 +54,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="menustate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="level1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameoverstate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="detailstate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winstate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

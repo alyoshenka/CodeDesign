@@ -1,7 +1,13 @@
 #pragma once
 #include <iostream>
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#ifdef _DEBUG
+#define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#define new DEBUG_NEW
+#endif
 
-// reorganize functions
 // check resize for index being 1 off
 // better way than calling resize() each time?
 // check deconstructor
@@ -172,19 +178,12 @@ bool DynamicArray<T>::removeOrdered(size_t idx)
 template<typename T>
 void DynamicArray<T>::resize(size_t newCapacity)
 {
-	// it is probably best not to make a new array, but I'm going to
-	// ultimately, find a better way to do this
-
 	// new array
 	T * newArr = new T[newCapacity];
 
 	// change vals
 	arrCapacity = newCapacity;
 
-	// arrSize shouldn't need to be changed
-
-	// copy data over
-	// newArr = arr;
 	// copy data over
 	for (int i = 0; i <= arrSize; i++) {
 		newArr[i] = arr[i];
@@ -195,7 +194,6 @@ void DynamicArray<T>::resize(size_t newCapacity)
 
 	// set to new array
 	arr = newArr;
-
 }
 
 template<typename T>

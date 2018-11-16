@@ -2,11 +2,13 @@
 #include <cassert>
 #include <stddef.h>
 
-// more functions to be implemented
-
-// do I need an iterator constructor?
-
-// make default iterator constructor
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#ifdef _DEBUG
+	#define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
+	#define new DEBUG_NEW
+#endif
 
 template <typename T>
 class LinkedList {
@@ -33,7 +35,7 @@ public:
 		// constructor
 		iterator(Node * n);
 		// destructor
-		~iterator(); // not sure
+		~iterator(); 
 
 		// does iterator point to same node?
 		bool operator==(const iterator& rhs) const;
@@ -43,7 +45,7 @@ public:
 		T& operator*() const;
 		// pre-increment, reference to iterator after incremented
 		iterator& operator++();
-		// post-increment, riterator to current node while incrementing existing iterator (WHAT)
+		// post-increment, iterator to current node while incrementing existing iterator (WHAT)
 		iterator operator++(int);
 		// pointer dereference overload
 		T* operator->();
@@ -88,14 +90,16 @@ LinkedList<T>::LinkedList() {
 }
 
 template <typename T>
-LinkedList<T>::~LinkedList() { // not finished
+LinkedList<T>::~LinkedList() { 
 	// iterate through and delete all pointers
+	while (head->next != nullptr) {
+		head = head->next;
+		delete head->previous;
+	}
 }
 
 template <typename T>
 void LinkedList<T>::pushFront(const T& val) {
-
-	// WILL THIS BREAK IF NO VALUES? yes
 
 	// if first node
 	if (head == nullptr) {
@@ -108,12 +112,12 @@ void LinkedList<T>::pushFront(const T& val) {
 		// make new node
 		Node * temp = new Node{val, nullptr, head};	
 		head->previous = temp;
-		head = temp;						
-	}
+		head = temp;
+	}	
 } 
 
 template <typename T>
-void LinkedList<T>::popFront() { // pretty sure this is correct
+void LinkedList<T>::popFront() { 
 	// set second node's previous pointer to null
 	head->next->previous = nullptr;	
 	// create temporary pointer to second node
@@ -129,7 +133,6 @@ void LinkedList<T>::popFront() { // pretty sure this is correct
 template <typename T>
 void LinkedList<T>::pushBack(const T& val) {
 
-	// check with pushFront for edge cases
 
 	// create new node
 	Node newNode;
@@ -137,7 +140,7 @@ void LinkedList<T>::pushBack(const T& val) {
 	newNode.next = nullptr;
 
 	// get to last value in list
-	Node temp = head; // assuming I can modify nodes in list with this, I could be wrong
+	Node temp = head; 
 	// while next value
 	while (temp->next != nullptr) {
 		temp = temp->next;
@@ -166,21 +169,18 @@ template <typename T>
 T& LinkedList<T>::first() {
 	// return first node data
 	return head->data;
-} // &??
+} 
 
 template <typename T>
 T& LinkedList<T>::last() {
 
-	// if nothing
-	// RIGHT WAY TO DO THIS?	
+	// if nothing	
 	if (head == nullptr) {
 		assert("Nothing to return");
 	}
 
 	// iterate to back of list
 	Node * temp = head;
-	// explicityly set these because I don't know how else to do it
-	// temp->next = head->next;
 	
 	while (temp->next != nullptr) {
 		temp = temp->next;
@@ -191,6 +191,7 @@ T& LinkedList<T>::last() {
 
 template <typename T>
 size_t LinkedList<T>::count() {
+
 	size_t cnt = 0;
 
 	// if nothing in list
@@ -204,7 +205,7 @@ size_t LinkedList<T>::count() {
 	// iterate through list, count items
 	Node * temp = head;
 	while (temp->next != nullptr) {
-		temp = temp->next; // FENCEPOST	
+		temp = temp->next; 
 		cnt++;
 	}
 
@@ -221,11 +222,8 @@ bool LinkedList<T>::empty() {
 	return false;
 }
 
-template <typename T> // typename fixed it
+template <typename T> 
 typename LinkedList<T>::iterator LinkedList<T>::begin() {
-	// should this be one before head?
-	// making this the first
-	// deletion of n??
 
 	iterator temp(head);
 	return temp;
@@ -236,11 +234,6 @@ typename LinkedList<T>::iterator LinkedList<T>::end() {
 	return iterator(nullptr);
 }
 
-// iterator
-// check all of these for accuracy because I have no idea what I'm doing
-// should I be using cur or this?
-
-
 template<typename T>
 LinkedList<T>::iterator::iterator(Node * n)
 {
@@ -250,21 +243,18 @@ LinkedList<T>::iterator::iterator(Node * n)
 template<typename T>
 LinkedList<T>::iterator::~iterator()
 {
-	// not sure
+	// delete cur;
 }
 
 template <typename T>
-bool LinkedList<T>::iterator::operator==(const iterator& rhs) const {
-	// CHECK TO MAKE SURE THIS WORKS CORRECTLY	
+bool LinkedList<T>::iterator::operator==(const iterator& rhs) const {	
 
 	return cur == rhs.cur;
 }
 
 template <typename T>
 bool LinkedList<T>::iterator::operator!=(const iterator& rhs) const {
-	// make use of ==
-	// return ! this == rhs;
-	// if memory addresses match
+
 	return cur != rhs.cur;
 }
 

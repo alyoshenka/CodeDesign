@@ -5,6 +5,16 @@
 #include <iostream>
 #include <list>
 
+// check for memory leaks
+
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#ifdef _DEBUG
+	#define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
+	#define new DEBUG_NEW
+#endif
+
 // figure out why iteration isn't working
 
 int main() {
@@ -53,7 +63,7 @@ int main() {
 	//for (auto it = list1.end(); it != list1.begin(); it--) { // 234
 	//	std::cout << (*it) << std::endl;
 	//}
-	
+
 	std::cout << std::endl;
 	std::cout << "Dynamic Array" << std::endl;
 
@@ -115,5 +125,8 @@ int main() {
 	std::cout << "4=" << queue1.size() << std::endl; // 4
 	
 	system("pause");
+
+	_CrtDumpMemoryLeaks();
+
 	return 0;
 }
