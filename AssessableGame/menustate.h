@@ -1,6 +1,8 @@
 #pragma once
 #include "gamestate.h"
 #include "aButton.h"
+#include <fstream>
+#include <iostream>
 
 class menustate : public gamestate
 {
@@ -8,6 +10,7 @@ class menustate : public gamestate
 	aButton detailButton;
 	int pauseTime;
 	int timer;
+	std::string fileText;
 
 public:
 	menustate();

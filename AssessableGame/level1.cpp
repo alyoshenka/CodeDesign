@@ -1,12 +1,9 @@
 #include "level1.h"
 
-
-
 level1::level1()
 {
 	background = LoadTexture("ocean.png");
 }
-
 
 level1::~level1()
 {
@@ -17,6 +14,24 @@ void level1::update()
 {
 	player.update();
 	enemies.update();
+
+	// check for collisions
+	for (int i = 0; i < enemies.idx; i++) {
+		if (CheckCollisionRecs(enemies.fishies[i], {player.pos.x, player.pos.y,
+			player.destRec.width, player.destRec.height})) {
+			
+			// compare sizes
+			if (enemies.fishies[i].height > player.destRec.height) {
+				player.shrink();
+			}
+			else {
+				// grow
+				player.grow();
+				// delete enemy
+				enemies.pop(i);				
+			}
+		}
+	}
 }
 
 void level1::draw()

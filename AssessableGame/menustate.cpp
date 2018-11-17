@@ -13,6 +13,26 @@ menustate::menustate()
 	detailButton = aButton("green_button04.png", "green_button05.png");
 	detailButton.bounds.x = startButton.bounds.x;
 	detailButton.bounds.y = startButton.bounds.y + size / 2.0f;	
+
+	// get file input
+	std::ifstream file;
+	// open
+	file.open("fishyGame.txt", std::ios::in);
+	// verify
+	if (file.fail()) {
+		std::cerr << "File not found" << std::endl;
+	}
+	
+	// iterate through
+	std::string cur;
+	while (std::getline(file, cur)) {
+		fileText += cur;
+		fileText += "\n";
+	}
+
+	// reset
+	file.clear();
+	file.close();
 }
 
 
@@ -28,7 +48,13 @@ void menustate::update()
 void menustate::draw()
 {
 	// background
-	ClearBackground(DARKPURPLE);
+	// dark pruple
+	ClearBackground({ 30, 0, 26, 0 });
+	for (int y = 0; y < GetScreenHeight(); y += 20) {
+		for (int x = 0; x < GetScreenWidth(); x += 20) {
+			DrawCircle(x, y, 5, BLACK);
+		}
+	}
 
 	// buttons
 	startButton.draw();
@@ -38,6 +64,7 @@ void menustate::draw()
 	DrawText("Start Game", startButton.bounds.x+10, startButton.bounds.y+8, 30, BLACK);
 	DrawText("Controls", detailButton.bounds.x+30, detailButton.bounds.y+8, 30, BLACK);
 
+	DrawText(fileText.c_str(), 10, 450, 10, WHITE);
 }
 
 GameStates menustate::next()

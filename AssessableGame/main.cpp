@@ -3,9 +3,11 @@
 
 int main() {
 
+	// window vars
 	int w = 1000;
 	int h = 500;
 
+	// init
 	InitWindow(w, h, "OctoAdventure");
 	SetTargetFPS(60);
 
@@ -27,6 +29,7 @@ int main() {
 			continue;
 		}
 
+		// update state
 		stateInstance->update();
 
 		BeginDrawing();
@@ -38,6 +41,7 @@ int main() {
 		EndDrawing();
 	}
 
+	// clean up
 	delete stateInstance;
 
 	CloseWindow();

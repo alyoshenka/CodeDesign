@@ -96,6 +96,7 @@ LinkedList<T>::~LinkedList() {
 		head = head->next;
 		delete head->previous;
 	}
+	delete head;
 }
 
 template <typename T>

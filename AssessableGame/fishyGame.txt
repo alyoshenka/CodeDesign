@@ -1,0 +1,2 @@
+This is a game that is reading from a file.
+Let's make sure it works.

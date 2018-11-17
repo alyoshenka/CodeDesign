@@ -8,11 +8,13 @@ Octopus::Octopus()
 	currentFrame = 0;
 	animationSpeed = 500;
 	currentFrameItr = 0;*/
-	sprite = LoadTexture("fishTile_101.png");
-	sourceRec = {0.0f, 0.0f, (float)sprite.width, (float)sprite.height};
-	destRec = sourceRec;
+	spriteL = LoadTexture("fishL.png");
+	spriteR = LoadTexture("fishR.png");
+	spriteC = spriteR;
+	sourceRec = {0.0f, 0.0f, (float)spriteR.width, (float)spriteR.height};
+	destRec = { 0.0f, 0.0f, sourceRec.width / 2.0f, sourceRec.height / 2.0f };
 	pos = { 0, 0 };
-	speed = 150.0f;
+	speed = 200.0f;
 	waterGravity = speed / 10;
 
 	health = 10;
@@ -26,14 +28,15 @@ Octopus::Octopus()
 
 Octopus::~Octopus()
 {
-	UnloadTexture(sprite);
+	UnloadTexture(spriteR);
+	UnloadTexture(spriteL);
 }
 
 void Octopus::draw()
 {
 	// DrawTexture(sprite, 0, 0, WHITE);
 	// DrawTextureRec(sprite, sourceRec, pos, WHITE);
-	DrawTexturePro(sprite, sourceRec, destRec, { pos.x * -1, pos.y * -1 }, 0, WHITE);
+	DrawTexturePro(spriteC, sourceRec, destRec, { pos.x * -1, pos.y * -1 }, 0, WHITE);
 }
 
 void Octopus::update()
@@ -57,9 +60,11 @@ void Octopus::update()
 	// movement
 	if (IsKeyDown(KEY_A)) {
 		pos.x -= speed * GetFrameTime();
+		spriteC = spriteL;
 	}
 	if (IsKeyDown(KEY_D)) {
 		pos.x += speed * GetFrameTime();
+		spriteC = spriteR;
 	}
 	if (IsKeyDown(KEY_W)) {
 		pos.y -= speed * GetFrameTime();
@@ -72,8 +77,8 @@ void Octopus::update()
 	if (pos.x < 0) {
 		pos.x = 0;
 	}
-	if (pos.x + sprite.width > GetScreenWidth()) {
-		pos.x = GetScreenWidth() - sprite.width;
+	if (pos.x + spriteR.width > GetScreenWidth()) {
+		pos.x = GetScreenWidth() - spriteR.width;
 	}
 	if (pos.y < 0) {
 		pos.y = 0;
@@ -81,12 +86,20 @@ void Octopus::update()
 	/*if (pos.y + sprite.height / frameCount > GetScreenHeight()) {
 		pos.y = GetScreenHeight() - sprite.height / frameCount;
 	}*/
-	if (pos.y + sprite.height > GetScreenHeight()) {
-		pos.y = GetScreenHeight() - sprite.height;
+	if (pos.y + spriteR.height > GetScreenHeight()) {
+		pos.y = GetScreenHeight() - spriteR.height;
 	}
 
 	// slight gravity
 	pos.y += waterGravity * GetFrameTime();
+}
+
+void Octopus::shrink()
+{
+	currentSize *= 1 - modifier;
+	destRec.width *= 1 - modifier;
+	destRec.height *= 1 - modifier;
+	health -= modifier;
 }
 
 void Octopus::grow()
@@ -95,4 +108,5 @@ void Octopus::grow()
 	currentSize *= modifier;
 	destRec.width *= modifier;
 	destRec.height *= modifier;
+	
 }

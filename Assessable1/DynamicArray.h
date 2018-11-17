@@ -101,6 +101,8 @@ DynamicArray<T>::DynamicArray(const DynamicArray & _arr)
 template<typename T>
 DynamicArray<T> & DynamicArray<T>::operator=(const DynamicArray & _arr)
 {
+	delete[] arr;
+
 	// init vals
 	arrSize = _arr.arrSize;
 	arrCapacity = _arr.arrCapacity;

@@ -1,17 +1,21 @@
 #pragma once
 #include "raylib.h"
+
+// reset timer on getting hit
+
 class Octopus
 {
-	// left and right directional textures?
 
-	Texture2D sprite;
+	// left 
+	Texture2D spriteL;
+	// right
+	Texture2D spriteR;
+	// current
+	Texture2D spriteC;
 	int currentFrameItr;
 	int currentFrame;
 	int animationSpeed;
 	Rectangle sourceRec;
-	Rectangle destRec;
-	Vector2 pos;
-
 	int spriteHeight;
 	int frameCount;
 	
@@ -20,13 +24,17 @@ class Octopus
 	float waterGravity;	
 
 	// size to win
-	float goalSize;
-	// current size
-	float currentSize;
 	// growth each time
 	float modifier;
 
 public:
+
+	float currentSize;
+	float goalSize;
+	// float modifier;
+
+	Rectangle destRec;
+	Vector2 pos;
 
 	int health;
 
@@ -35,6 +43,8 @@ public:
 
 	void draw();
 	void update();
+	// get bigger or smaller
 	void grow();
+	void shrink();
 };
 
