@@ -34,7 +34,7 @@ public:
 	// float modifier;
 
 	Rectangle destRec;
-	Vector2 pos;
+	Vector2 position;
 
 	int health;
 
@@ -46,5 +46,8 @@ public:
 	// get bigger or smaller
 	void grow();
 	void shrink();
+
+	// return bounding box (to test for collision)
+	Rectangle boundingBox();
 };
 

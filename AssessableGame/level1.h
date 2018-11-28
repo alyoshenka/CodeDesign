@@ -1,14 +1,17 @@
 #pragma once
 #include "gamestate.h"
 #include "Octopus.h"
-#include "Enemy.h"
+// #include "Enemy.h"
+#include "FishManager.h"
 
 
 class level1 : public gamestate
 {
 	Octopus player;
-	Enemy enemies;
+	// Enemy enemies;
 	Texture2D background;
+
+	FishManager enemyInstance;
 
 public:
 

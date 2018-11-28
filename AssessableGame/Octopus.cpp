@@ -13,13 +13,13 @@ Octopus::Octopus()
 	spriteC = spriteR;
 	sourceRec = {0.0f, 0.0f, (float)spriteR.width, (float)spriteR.height};
 	destRec = { 0.0f, 0.0f, sourceRec.width / 2.0f, sourceRec.height / 2.0f };
-	pos = { 0, 0 };
+	position = { 0, 0 };
 	speed = 200.0f;
 	waterGravity = speed / 10;
 
 	health = 10;
 
-	currentSize = 1.0f;
+	currentSize = 0.5f;
 	// trying to get 3x bigger
 	goalSize = 3.0f;
 	modifier = 0.02;
@@ -36,7 +36,7 @@ void Octopus::draw()
 {
 	// DrawTexture(sprite, 0, 0, WHITE);
 	// DrawTextureRec(sprite, sourceRec, pos, WHITE);
-	DrawTexturePro(spriteC, sourceRec, destRec, { pos.x * -1, pos.y * -1 }, 0, WHITE);
+	DrawTexturePro(spriteC, sourceRec, boundingBox(), { position.x * -1, position.y * -1 }, 0, WHITE);
 }
 
 void Octopus::update()
@@ -59,39 +59,39 @@ void Octopus::update()
 
 	// movement
 	if (IsKeyDown(KEY_A)) {
-		pos.x -= speed * GetFrameTime();
+		position.x -= speed * GetFrameTime();
 		spriteC = spriteL;
 	}
 	if (IsKeyDown(KEY_D)) {
-		pos.x += speed * GetFrameTime();
+		position.x += speed * GetFrameTime();
 		spriteC = spriteR;
 	}
 	if (IsKeyDown(KEY_W)) {
-		pos.y -= speed * GetFrameTime();
+		position.y -= speed * GetFrameTime();
 	}
 	if (IsKeyDown(KEY_S)) {
-		pos.y += speed * GetFrameTime();
+		position.y += speed * GetFrameTime();
 	}
 
 	// bounds checking
-	if (pos.x < 0) {
-		pos.x = 0;
+	if (position.x < 0) {
+		position.x = 0;
 	}
-	if (pos.x + spriteR.width > GetScreenWidth()) {
-		pos.x = GetScreenWidth() - spriteR.width;
+	if (position.x + spriteR.width > GetScreenWidth()) {
+		position.x = GetScreenWidth() - spriteR.width;
 	}
-	if (pos.y < 0) {
-		pos.y = 0;
+	if (position.y < 0) {
+		position.y = 0;
 	}
 	/*if (pos.y + sprite.height / frameCount > GetScreenHeight()) {
 		pos.y = GetScreenHeight() - sprite.height / frameCount;
 	}*/
-	if (pos.y + spriteR.height > GetScreenHeight()) {
-		pos.y = GetScreenHeight() - spriteR.height;
+	if (position.y + spriteR.height > GetScreenHeight()) {
+		position.y = GetScreenHeight() - spriteR.height;
 	}
 
 	// slight gravity
-	pos.y += waterGravity * GetFrameTime();
+	position.y += waterGravity * GetFrameTime();
 }
 
 void Octopus::shrink()
@@ -102,11 +102,15 @@ void Octopus::shrink()
 	health -= modifier;
 }
 
+Rectangle Octopus::boundingBox()
+{
+	return { position.x, position.y, spriteC.width * currentSize, spriteC.height * currentSize };
+}
+
 void Octopus::grow()
 {
 	// correct porportion?
-	currentSize *= modifier;
-	destRec.width *= modifier;
-	destRec.height *= modifier;
-	
+	currentSize *= 1 + modifier;
+	destRec.width *= 1 + modifier;
+	destRec.height *= 1 + modifier;	
 }

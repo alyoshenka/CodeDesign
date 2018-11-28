@@ -3,6 +3,9 @@
 level1::level1()
 {
 	background = LoadTexture("ocean.png");
+	// enemyInstance = FishManager();
+	// you're dumb this was initialized in .h 
+	// but also look into this one??
 }
 
 level1::~level1()
@@ -13,25 +16,38 @@ level1::~level1()
 void level1::update()
 {
 	player.update();
-	enemies.update();
+	enemyInstance.update();
+
+	if (enemyInstance.checkForCollision(player.boundingBox()) == 2) {
+		// make player smaller
+		player.shrink();
+	}
+	if (enemyInstance.checkForCollision(player.boundingBox()) == 1) {
+		// make player smaller
+		player.grow();
+	}
 
 	// check for collisions
-	for (int i = 0; i < enemies.idx; i++) {
-		if (CheckCollisionRecs(enemies.fishies[i], {player.pos.x, player.pos.y,
-			player.destRec.width, player.destRec.height})) {
-			
-			// compare sizes
-			if (enemies.fishies[i].height > player.destRec.height) {
-				player.shrink();
-			}
-			else {
-				// grow
-				player.grow();
-				// delete enemy
-				enemies.pop(i);				
-			}
-		}
-	}
+	// enemyInstance.checkForCollision();
+	//for (int i = 0; i < enemies.idx; i++) {
+	//	if (CheckCollisionRecs(enemies.fishies[i], {player.pos.x, player.pos.y,
+	//		player.destRec.width, player.destRec.height})) {
+	//		
+	//		// compare sizes
+	//		if (enemies.fishies[i].height > player.destRec.height) {
+	//			player.shrink();
+	//		}
+	//		else {
+	//			// grow
+	//			player.grow();
+	//			// delete enemy
+	//			enemies.pop(i);				
+	//		}
+	//	}
+	//}
+
+	// update level given size of player
+	// add win condition
 }
 
 void level1::draw()
@@ -43,7 +59,7 @@ void level1::draw()
 	ClearBackground({ 20, 231, 255, 0 });
 	DrawText(std::to_string(player.health).c_str(), 10, 10, 20, BLACK);
 	player.draw();
-	enemies.draw();
+	enemyInstance.draw();
 }
 
 GameStates level1::next()
