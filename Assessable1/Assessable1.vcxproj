@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>

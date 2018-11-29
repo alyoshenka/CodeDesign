@@ -2,6 +2,7 @@
 #include "DynamicArray.h"
 #include "Stack.h"
 #include "Queue.h"
+#include "ObjectPool.h"
 #include <iostream>
 #include <list>
 

@@ -93,6 +93,9 @@ LinkedList<T>::LinkedList() {
 
 template <typename T>
 LinkedList<T>::~LinkedList() { 
+	if (head == nullptr) {
+		return;
+	}
 	// iterate through and delete all pointers
 	while (head->next != nullptr) {
 		head = head->next;
@@ -141,8 +144,14 @@ void LinkedList<T>::pushBack(const T& val) {
 	newNode->data = val;
 	newNode->next = nullptr;
 
+	// if nothing
+	if (head == nullptr) {
+		head = newNode;
+	}
+
 	// get to last value in list
-	Node * temp = head; 
+	Node * temp = head;
+
 	// while next value
 	while (temp->next != nullptr) {
 		temp = temp->next;
@@ -150,7 +159,7 @@ void LinkedList<T>::pushBack(const T& val) {
 	// set last->next to new
 	temp->next = newNode;
 	// set new->previous to last
-	newNode->previous = temp; // this could be wrong
+	newNode->previous = temp;
 	
 }
 
@@ -170,15 +179,21 @@ void LinkedList<T>::popBack() {
 template<typename T>
 void LinkedList<T>::resize(size_t length)
 {
+	// to iterate through
 	Node * temp = head;
-	int count = 0;
 
-	// iterate through
-	while (head->next != nullptr) {
-		head = head->next;
+	size_t count = 0;
+
+	//checks for 0 size linked list
+	if (head != nullptr) {
 		count++;
+		// iterate through
+		while (temp->next != nullptr) {
+			temp = temp->next;
+			count++;
+		}
 	}
-
+	
 	while (count < length) {
 		pushBack(0);
 		count++;

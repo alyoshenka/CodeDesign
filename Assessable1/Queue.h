@@ -89,13 +89,13 @@ const T & Queue<T>::front() const
 template<typename T>
 T & Queue<T>::back()
 {
-	return arr[ar.sizeInUse() - 1];
+	return arr[arr.sizeInUse() - 1];
 }
 
 template<typename T>
 const T & Queue<T>::back() const
 {
-	return arr[ar.sizeInUse() - 1];
+	return arr[arr.sizeInUse() - 1];
 }
 
 template<typename T>
