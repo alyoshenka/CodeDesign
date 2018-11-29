@@ -162,12 +162,13 @@ int main() {
 			}
 		}
 		std::cout << std::endl;
+		std::cout << std::endl;
 
 		system("pause");
 		
 	}
 
-	_CrtDumpMemoryLeaks();
+	// _CrtDumpMemoryLeaks();
 
 	return 0;
 }
