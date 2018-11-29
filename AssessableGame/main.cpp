@@ -12,20 +12,9 @@
 
 // To Do
 // check for memory leaks
-// make adequate comments
-// make fish move up and down (sin + cos)
-// correct location of public vs privat variables
-// change Fish position initialization
-// there's gotta be a better way than making all your fish variables public
-// randomizePos() vs just doing it in copy constructor
-// would randomizing the position in the copy constructor really be that bad?
-	// probably
-// putting it in both initialization and copy constructor, make sure to take one out
-// reasonably scale down enemy array size
-// make sure to add fish size instead of multiplying by modifier
-// pop messes up order
-// why is initial fish spawn weird
-// fish we can eat
+// make later advancement harder
+// check on unloading fish prototypes
+// normalize player speed
 
 int main() {
 
@@ -36,7 +25,7 @@ int main() {
 	int h = 500;
 
 	// init
-	InitWindow(w, h, "OctoAdventure");
+	InitWindow(w, h, "FishyGame");
 	SetTargetFPS(60);
 
 	gamestate * stateInstance = new menustate();

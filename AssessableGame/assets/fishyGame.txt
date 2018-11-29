@@ -1,8 +1,9 @@
-This is a game that is reading from a file.
-Let's make sure it works.
-
 Use the WASD keys to control your fish.
 
 Eat smaller fish, avoid larger fish.
 
 If you eat enough you win, if you get eaten you lose.
+
+
+
+Alexi Most, AIE prog 2020

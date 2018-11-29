@@ -1,21 +1,11 @@
 #include "FishManager.h"
 
-
-void FishManager::addFish(size_t level) // ADD LEVEL QUALIFIER HERE
-{
-	// if space
-	if (arrSize < arrCapacity - 1) {
-		// gets a random fish within level qualifications
-		fishArr[arrSize++] = fishPrototypes[GetRandomValue(0, level - 1)];
-	}
-	// else nothing
-}
-
 FishManager::FishManager()
 {
-	arrCapacity = 20;
-	arrSize = 0;
+	arrCapacity = 40; 
 	fishArr = new Fish[arrCapacity];
+	free = new bool[arrCapacity];
+	
 	prototypeCount = 4;
 	fishPrototypes = new Fish[prototypeCount];
 	fishPrototypes[0] = *(new Fish()); // default fish
@@ -23,49 +13,59 @@ FishManager::FishManager()
 	fishPrototypes[2] = *(new Fish("assets/fishY.png", 250.0f, 1.5f));
 	fishPrototypes[3] = *(new Fish("assets/fishG.png", 250.0f, 2.0f));
 
-	// populate arr with level 1 fish
-	for (size_t i = 0; i < arrCapacity; i++) {
+	for (int i = 0; i < arrCapacity; i++) {
+		free[i] = false;
 		fishArr[i] = fishPrototypes[0];
-		// randomize values
 		fishArr[i].randomizeValues();
 	}
 }
 
-
 FishManager::~FishManager()
 {
+	// manually unload prototype textures?
 	delete[] fishArr;
 	delete[] fishPrototypes;
+	delete[] free;
 	// assuming this calls Fish deconstructor and taks care of unloading textures
 }
 
-void FishManager::pop(size_t i)
+void FishManager::addFish(size_t level)
 {
-	// deletes by swapping in end Fish and decrementing size
-	// this implementation caused odd skips, does order really matter here?
-	if (arrSize > 0) {
-		fishArr[i] = fishArr[arrSize--];
+	// if space
+	for (int i = 0; i < arrCapacity; i++) {
+		if (free[i]) {
+			// make smaller fish slightly more probable
+			int f = GetRandomValue(1, level + prototypeCount);
+			if (f > level) {
+				fishArr[i] = fishPrototypes[0];
+			}
+			else {
+				fishArr[i] = fishPrototypes[f];
+			}
+			free[i] = false;
+		}
 	}
+	// else nothing
+}
+
+void FishManager::pop(size_t i)
+{	
+	free[i] = true;
 }
 
 void FishManager::update()
 {
-	// stagger new fish
-	if (GetRandomValue(0, 10) == 0) {
-		arrSize++;
-	}
-	// bounds
-	if (arrSize >= arrCapacity) {
-		arrSize = arrCapacity - 1;
-	}
+	
+	for (size_t i = 0; i < arrCapacity; i++) {
 
-	for (size_t i = 0; i <= arrSize; i++) {
-		// update individual fish positions
-		fishArr[i].update();
-
+		if (! free[i]) {
+			// update individual fish positions
+			fishArr[i].update();
+		}
+		
 		// make better implementation
 		// bounds checking
-		if (fishArr[i].position.x < -50) {
+		if (! free[i] && fishArr[i].position.x < -150) {
 			pop(i);
 		}
 	}
@@ -73,30 +73,36 @@ void FishManager::update()
 
 void FishManager::draw()
 {
-	for (size_t i = 0; i <= arrSize; i++) {
-		fishArr[i].draw();
+	for (size_t i = 0; i <= arrCapacity; i++) {
+		if (! free[i]) {
+			fishArr[i].draw();
+		}		
 	}
 }
 
-int FishManager::checkForCollision(Rectangle player)
+float FishManager::checkForCollision(Rectangle player)
 {
-	for (size_t i = 0; i <= arrSize; i++) {
+	for (size_t i = 0; i < arrCapacity; i++) {
 
-		if (CheckCollisionRecs(fishArr[i].boundingBox(), player)) {
+		if (! free[i] && 
+			CheckCollisionRecs(fishArr[i].boundingBox(), player)) {
+
 			if (player.height >= fishArr[i].boundingBox().height) {
 
+				// store val
+				int temp = fishArr[i].boundingBox().height;
 				// get rid of this specific fish
 				pop(i);
 				// player bigger
-				return 1;
+				return temp;
 			}
 			else {
 				// enemy bigger
-				return 2;
+				return 0.0f;
 			}
 		}
 	}
 	// no collision
-	return 0;
+	return -1.0f;
 }
 

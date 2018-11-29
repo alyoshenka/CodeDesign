@@ -15,7 +15,6 @@
 	#define new DEBUG_NEW
 #endif
 
-// figure out why iteration isn't working
 
 int main() {
 
@@ -68,9 +67,9 @@ int main() {
 		std::cout << std::endl;
 
 		LinkedList<int> list2;
-		std::cout << "1=" << list2.empty() << std::endl;
+		std::cout << "1=" << list2.empty() << std::endl; // 1 empty = true
 		list2.resize(5);
-		std::cout << "0=" << list2.empty() << std::endl;
+		std::cout << "0=" << list2.empty() << std::endl; // 0 empty = false
 
 		// this doesn't work, but there should be a way to iterate backwards
 		//for (auto it = list1.end(); it != list1.begin(); it--) { // 234
@@ -137,7 +136,35 @@ int main() {
 		queue1.pop();
 		std::cout << "4=" << queue1.size() << std::endl; // 4
 
+		std::cout << "\nObject Pool" << std::endl;
+
+		ObjectPool<int> pool1(5);
+		// put values into pool
+		for (int i = 0; i < pool1.capacity(); i++) {
+			if (pool1.free[i]) {
+				pool1.pool[i] = i + 1;
+			}
+		}
+		// print values
+		std::cout << "5=" << pool1.capacity() << std::endl; // 5
+		for (int i = 0; i < pool1.capacity(); i++) {
+			if (pool1.free[i]) {
+				std::cout << pool1.pool[i] << " "; // 1-5
+			}			
+		}
+		std::cout << std::endl;
+		// recycle 2
+		pool1.recycle(&(pool1.pool[1]));
+		// print values
+		for (int i = 0; i < pool1.capacity(); i++) {
+			if (pool1.free[i]) {
+				std::cout << pool1.pool[i] << " "; // 1-5, no 2
+			}
+		}
+		std::cout << std::endl;
+
 		system("pause");
+		
 	}
 
 	_CrtDumpMemoryLeaks();

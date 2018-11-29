@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\GameStates">
+      <UniqueIdentifier>{612ede03-9ebd-45c1-a071-0a7fedd6fe34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameStates">
+      <UniqueIdentifier>{f493a09b-3d03-4a2e-acfe-df069fe36b1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,25 +27,7 @@
     <ClCompile Include="Octopus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gamestate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="menustate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="level1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="aButton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gameoverstate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="detailstate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="winstate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Fish.cpp">
@@ -48,30 +36,24 @@
     <ClCompile Include="FishManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="detailstate.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="gameoverstate.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="gamestate.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="menustate.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="winstate.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Octopus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gamestate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="menustate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="level1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gameoverstate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="detailstate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="winstate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Fish.h">
@@ -79,6 +61,24 @@
     </ClInclude>
     <ClInclude Include="FishManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="detailstate.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="gameoverstate.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="menustate.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="level1.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="winstate.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="gamestate.h">
+      <Filter>Header Files\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

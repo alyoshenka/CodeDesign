@@ -147,6 +147,7 @@ void LinkedList<T>::pushBack(const T& val) {
 	// if nothing
 	if (head == nullptr) {
 		head = newNode;
+		return;
 	}
 
 	// get to last value in list
@@ -159,8 +160,7 @@ void LinkedList<T>::pushBack(const T& val) {
 	// set last->next to new
 	temp->next = newNode;
 	// set new->previous to last
-	newNode->previous = temp;
-	
+	newNode->previous = temp;	
 }
 
 template <typename T>

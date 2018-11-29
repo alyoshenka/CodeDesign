@@ -131,7 +131,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="aButton.cpp" />
     <ClCompile Include="detailstate.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="FishManager.cpp" />
@@ -144,7 +143,6 @@
     <ClCompile Include="winstate.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="aButton.h" />
     <ClInclude Include="detailstate.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="FishManager.h" />

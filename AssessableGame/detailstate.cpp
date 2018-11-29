@@ -30,9 +30,9 @@ detailstate::~detailstate()
 
 void detailstate::draw()
 {
-	ClearBackground(LIGHTGRAY);
+	ClearBackground(BLACK);
 
-	DrawText(fileText.c_str(), 10, 10, 15, DARKBLUE);
+	DrawText(fileText.c_str(), 10, 10, 20, BLUE);
 
 	DrawText("[ ENTER ] to return", 100, 300, 30, BLACK);
 }

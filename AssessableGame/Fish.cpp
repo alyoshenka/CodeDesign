@@ -3,13 +3,11 @@
 Fish::Fish()
 {
 	sprite = LoadTexture("assets/fishP.png");
-	speed = 150.0f;
+	// spritePtr = &sprite;
 	size = 0.4f;
+	waveMath = 0.0f;
 
-	// random position within screen bounds
-	position = { (float)GetScreenWidth() - sprite.width * size,
-		(float)GetRandomValue(0, GetScreenHeight() - sprite.height * size) };
-
+	randomizeValues();
 }
 
 Fish::Fish(std::string _sprite, float _speed, float _size) : Fish::Fish()
@@ -17,6 +15,7 @@ Fish::Fish(std::string _sprite, float _speed, float _size) : Fish::Fish()
 	UnloadTexture(sprite);
 
 	sprite = LoadTexture(_sprite.c_str());
+	// spritePtr = &sprite;
 	speed = _speed;
 	size = _size;
 	// so it doesn't "peek" the edge of the screen
@@ -32,7 +31,8 @@ Fish::~Fish()
 void Fish::update()
 {		
 	position.x -= speed * GetFrameTime();
-	
+	waveMath += GetFrameTime() * waveMod;
+	position.y += sin(waveMath) / 2;	
 	// bounds checking done in fish manager
 }
 
@@ -43,10 +43,12 @@ void Fish::draw()
 
 void Fish::randomizeValues()
 {
-	position = { (float)GetScreenWidth() + sprite.width * size,
+	position = { (float)GetRandomValue(GetScreenWidth() + sprite.width * size, GetScreenWidth() * 2),
 		(float)GetRandomValue(0, GetScreenHeight() - sprite.height * size) };
 
 	speed = GetRandomValue(100, 150);
+
+	waveMod = GetRandomValue(1, 10) / 3;
 }
 
 Rectangle Fish::boundingBox()
@@ -62,7 +64,10 @@ Fish& Fish::operator=(const Fish & rhs)
 	// UnloadTexture(sprite);
 
 	// init vals
-	sprite = rhs.sprite;
+	sprite = rhs.sprite; // this is the problem
+	// spritePtr = rhs.spritePtr;
+	// sprite = *spritePtr;
+
 	speed = rhs.speed;
 	size = rhs.size;
 	randomizeValues();

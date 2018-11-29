@@ -209,14 +209,6 @@ void DynamicArray<T>::resize()
 template<typename T>
 void DynamicArray<T>::clear()
 {
-	// one or the other until I figure out the right way
-
-	/*for (int i = 0; i < arrSize; i++) {
-		arr[i] = nullptr;
-	}*/
-
-	// doesn't free up memory, but does have functionality
-
 	arrSize = 0;
 }
 

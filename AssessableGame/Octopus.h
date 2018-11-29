@@ -1,7 +1,6 @@
 #pragma once
 #include "raylib.h"
-
-// reset timer on getting hit
+#include <math.h>
 
 class Octopus
 {
@@ -12,8 +11,6 @@ class Octopus
 	Texture2D spriteR;
 	// current
 	Texture2D spriteC;
-
-	Rectangle sourceRec;
 	
 	float speed;
 	// speed downwards due to gravity
@@ -25,8 +22,8 @@ class Octopus
 
 public:
 
-	float size;
-
+	float size;	
+	Rectangle sourceRec;
 	Vector2 position;
 
 	Octopus();
@@ -34,8 +31,9 @@ public:
 
 	void draw();
 	void update();
-	// get bigger or smaller
-	void grow();
+	// get bigger by modifier value
+	void grow(float mod);
+	// grow smaller by set value
 	void shrink();
 
 	// return bounding box (to test for collision)
