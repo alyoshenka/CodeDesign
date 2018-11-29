@@ -2,20 +2,25 @@
 
 Fish::Fish()
 {
-	sprite = LoadTexture("fishE.png");
+	sprite = LoadTexture("assets/fishP.png");
 	speed = 150.0f;
-	size = 1.0f;
+	size = 0.4f;
+
+	// random position within screen bounds
 	position = { (float)GetScreenWidth() - sprite.width * size,
 		(float)GetRandomValue(0, GetScreenHeight() - sprite.height * size) };
+
 }
 
-Fish::Fish(std::string _sprite, float _speed, float _size)
+Fish::Fish(std::string _sprite, float _speed, float _size) : Fish::Fish()
 {
+	UnloadTexture(sprite);
+
 	sprite = LoadTexture(_sprite.c_str());
 	speed = _speed;
 	size = _size;
-	position = { (float)GetScreenWidth() - sprite.width * size,
-		(float)GetRandomValue(0, GetScreenHeight() - sprite.height * size) };
+	// so it doesn't "peek" the edge of the screen
+	position.x = (float)GetScreenWidth() - sprite.width * size;
 }
 
 
@@ -25,39 +30,42 @@ Fish::~Fish()
 }
 
 void Fish::update()
-{
-		
+{		
 	position.x -= speed * GetFrameTime();
 	
-	if (position.x + sprite.width <= 0) {
-		// call facroty function to *remove*
-	}
-	
+	// bounds checking done in fish manager
 }
 
 void Fish::draw()
 {
-	/*DrawTexturePro(sprite, startSize, currentSize,
-		{ fishies[i].x * -1, fishies[i].y * -1 }, 0, RED);*/
-	DrawTextureV(sprite, position, WHITE);
+	DrawTexturePro(sprite, { 0, 0, (float)sprite.width, (float)sprite.height }, { 0, 0, sprite.width * size, sprite.height * size }, { position.x * -1, position.y * -1 }, 0, WHITE);
 }
 
-void Fish::randomizePosition()
+void Fish::randomizeValues()
 {
 	position = { (float)GetScreenWidth() + sprite.width * size,
 		(float)GetRandomValue(0, GetScreenHeight() - sprite.height * size) };
+
+	speed = GetRandomValue(100, 150);
+}
+
+Rectangle Fish::boundingBox()
+{
+	// hitbox modifier
+	float a = 0.75;
+	return { position.x, position.y, sprite.width * size * a, sprite.height * size * a };
 }
 
 Fish& Fish::operator=(const Fish & rhs)
 {
 	// delete something here
-	UnloadTexture(sprite);
+	// UnloadTexture(sprite);
 
 	// init vals
 	sprite = rhs.sprite;
 	speed = rhs.speed;
 	size = rhs.size;
-	randomizePosition();
+	randomizeValues();
 
 	return *this;
 }

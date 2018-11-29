@@ -17,7 +17,10 @@ enum GameStates {
 
 class gamestate
 {
+	
 public:
+	static int score;
+
 	gamestate();
 	~gamestate();
 

@@ -12,12 +12,8 @@ class Octopus
 	Texture2D spriteR;
 	// current
 	Texture2D spriteC;
-	int currentFrameItr;
-	int currentFrame;
-	int animationSpeed;
+
 	Rectangle sourceRec;
-	int spriteHeight;
-	int frameCount;
 	
 	float speed;
 	// speed downwards due to gravity
@@ -29,14 +25,9 @@ class Octopus
 
 public:
 
-	float currentSize;
-	float goalSize;
-	// float modifier;
+	float size;
 
-	Rectangle destRec;
 	Vector2 position;
-
-	int health;
 
 	Octopus();
 	~Octopus();

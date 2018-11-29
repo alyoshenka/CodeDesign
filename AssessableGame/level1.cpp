@@ -2,7 +2,7 @@
 
 level1::level1()
 {
-	background = LoadTexture("ocean.png");
+	level = 1;
 	// enemyInstance = FishManager();
 	// you're dumb this was initialized in .h 
 	// but also look into this one??
@@ -10,7 +10,6 @@ level1::level1()
 
 level1::~level1()
 {
-	UnloadTexture(background);
 }
 
 void level1::update()
@@ -18,57 +17,53 @@ void level1::update()
 	player.update();
 	enemyInstance.update();
 
-	if (enemyInstance.checkForCollision(player.boundingBox()) == 2) {
-		// make player smaller
+	enemyInstance.addFish(level);
+
+	// increase level given fish size
+	// BETTER WAY TO DO THIS
+	// makes it so there is always one level of fish the player can't eat
+	level = player.size / 0.5 + 1;
+
+	/*if (player.currentSize < 0.5) {
+		level = 1;
+	}else if (player.currentSize < 1.0) {
+		level = 2;
+	}else if (player.currentSize < 1.5) {
+		level = 3;
+	}else if (player.currentSize < 2.0) {
+		level = 4;
+	}*/
+
+	int temp = enemyInstance.checkForCollision(player.boundingBox());
+
+	if (temp == 2) {
 		player.shrink();
-	}
-	if (enemyInstance.checkForCollision(player.boundingBox()) == 1) {
-		// make player smaller
+	} 
+	if (temp == 1) {
 		player.grow();
 	}
-
-	// check for collisions
-	// enemyInstance.checkForCollision();
-	//for (int i = 0; i < enemies.idx; i++) {
-	//	if (CheckCollisionRecs(enemies.fishies[i], {player.pos.x, player.pos.y,
-	//		player.destRec.width, player.destRec.height})) {
-	//		
-	//		// compare sizes
-	//		if (enemies.fishies[i].height > player.destRec.height) {
-	//			player.shrink();
-	//		}
-	//		else {
-	//			// grow
-	//			player.grow();
-	//			// delete enemy
-	//			enemies.pop(i);				
-	//		}
-	//	}
-	//}
-
-	// update level given size of player
-	// add win condition
 }
 
 void level1::draw()
 {
-	Rectangle source = { 0, 0, background.width, background.height };
-	Rectangle dest = { 0, 0, GetScreenWidth(), GetScreenHeight() };
-	// DrawTexturePro(background, source, dest, { 0, 0 }, 0, WHITE);
-	// light blue
 	ClearBackground({ 20, 231, 255, 0 });
-	DrawText(std::to_string(player.health).c_str(), 10, 10, 20, BLACK);
+
+	// fish we can eat
+
+
+	DrawText(std::to_string(player.size).c_str(), 10, 10, 20, BLACK);
 	player.draw();
 	enemyInstance.draw();
 }
 
 GameStates level1::next()
 {
-	if (player.health <= 0) {
+	if (player.size < 0.4) {
 		return GameStates::LOSE;
 	}
 
-	if (IsMouseButtonPressed(1)) {
+	if (player.size > 2) {
+		// gamestate::score = player.currentSize;
 		return GameStates::WIN;
 	}
 

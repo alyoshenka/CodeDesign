@@ -5,8 +5,8 @@ aButton::aButton()
 	delayTime = 0.2f;
 	elapsedTime = 0.0f;
 	isClicked = false;
-	upTexture = LoadTexture("blue_button04.png");
-	downTexture = LoadTexture("blue_button05.png");
+	upTexture = LoadTexture("assets/blue_button04.png");
+	downTexture = LoadTexture("assets/blue_button05.png");
 	resetting = false;
 
 	bounds = { 0.0f, 0.0f, (float)upTexture.width, (float)upTexture.height };

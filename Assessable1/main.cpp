@@ -18,6 +18,8 @@
 
 int main() {
 
+	// true == 1
+
 	// put into it's own scope to get rid of memory leaks
 	{
 		// expected values are commented and printed for easy
@@ -61,6 +63,14 @@ int main() {
 		for (auto it = list1.begin(); it != list1.end(); it++) { // 432
 			std::cout << (*it) << std::endl;
 		}
+
+		std::cout << std::endl;
+
+		LinkedList<int> list2;
+		std::cout << "1=" << list2.empty() << std::endl;
+		list2.resize(5);
+		std::cout << "0=" << list2.empty() << std::endl;
+
 		// this doesn't work, but there should be a way to iterate backwards
 		//for (auto it = list1.end(); it != list1.begin(); it--) { // 234
 		//	std::cout << (*it) << std::endl;

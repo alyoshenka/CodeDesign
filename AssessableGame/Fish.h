@@ -9,11 +9,9 @@ public:
 	
 	Texture2D sprite;
 	float speed;
-	//how big it is, relative to texture
+	// how big it is, relative to texture
 	float size;
 	Vector2 position;
-
-
 
 	Fish();
 	Fish(std::string filePath, float _speed, float _size);
@@ -22,7 +20,11 @@ public:
 	void update();
 	void draw();
 
-	void randomizePosition();
+	void randomizeValues();
+	// void randomizeValues(size_t level);
+
+	// return bounding box (to test for collision)
+	Rectangle boundingBox();
 
 	// copy constructor
 	Fish& operator = (const Fish & rhs);

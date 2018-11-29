@@ -1,31 +1,35 @@
 #include "raylib.h"
 #include "menustate.h"
 
+// check for memory leaks
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#ifdef _DEBUG
+#define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#define new DEBUG_NEW
+#endif
+
 // To Do
 // check for memory leaks
 // make adequate comments
 // make fish move up and down (sin + cos)
-// also varying speeds?
-// write data to high score file option in win state
 // correct location of public vs privat variables
-// should I use a factory or prototype class? yes I should
-// update fish draw function to do different sizes
-// should FishManager be a singleton? yes, make it so later
-// fish copy constructor
-// add more fish prototypes
 // change Fish position initialization
-// movement boundaries scaled to size
-// arrSize init to 0
 // there's gotta be a better way than making all your fish variables public
 // randomizePos() vs just doing it in copy constructor
 // would randomizing the position in the copy constructor really be that bad?
 	// probably
 // putting it in both initialization and copy constructor, make sure to take one out
 // reasonably scale down enemy array size
-// enemy.pop, player.shrink, player.grow
-// grow in't working because of something with how i'm increasing it
+// make sure to add fish size instead of multiplying by modifier
+// pop messes up order
+// why is initial fish spawn weird
+// fish we can eat
 
 int main() {
+
+	{
 
 	// window vars
 	int w = 1000;
@@ -69,6 +73,10 @@ int main() {
 	delete stateInstance;
 
 	CloseWindow();
+
+	}
+
+	// _CrtDumpMemoryLeaks();
 
 	return 0;
 }

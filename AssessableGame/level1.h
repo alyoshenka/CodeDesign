@@ -8,10 +8,10 @@
 class level1 : public gamestate
 {
 	Octopus player;
-	// Enemy enemies;
-	Texture2D background;
 
 	FishManager enemyInstance;
+
+	size_t level;
 
 public:
 

@@ -3,36 +3,16 @@
 menustate::menustate()
 {
 	// button size
-	int size = startButton.upTexture.width;;
+	int size = 100;
 
 	// center buttons
-	// aButton = aButton();
-	// startButton = aButton("green_button04.png", "green_button05.png"); // test
-	startButton.bounds.x = GetScreenWidth() / 2 - size / 2.0f;
-	startButton.bounds.y = GetScreenHeight() / 2.0f - size / 2,
-	detailButton = aButton("green_button04.png", "green_button05.png");
-	detailButton.bounds.x = startButton.bounds.x;
-	detailButton.bounds.y = startButton.bounds.y + size / 2.0f;	
+	start.x = GetScreenWidth() / 2 - size;
+	start.y = GetScreenHeight() / 2.0f - size / 2 - 50;
+	start.width = size * 2;
+	start.height = size / 2;
 
-	// get file input
-	std::ifstream file;
-	// open
-	file.open("fishyGame.txt", std::ios::in);
-	// verify
-	if (file.fail()) {
-		std::cerr << "File not found" << std::endl;
-	}
-	
-	// iterate through
-	std::string cur;
-	while (std::getline(file, cur)) {
-		fileText += cur;
-		fileText += "\n";
-	}
-
-	// reset
-	file.clear();
-	file.close();
+	controls = start;
+	controls.y = start.y + size;	
 }
 
 
@@ -42,7 +22,6 @@ menustate::~menustate()
 
 void menustate::update()
 {
-	
 }
 
 void menustate::draw()
@@ -57,14 +36,12 @@ void menustate::draw()
 	}
 
 	// buttons
-	startButton.draw();
-	detailButton.draw();
+	DrawRectangleRec(start, BLUE);
+	DrawRectangleRec(controls, BLUE);
 
 	// UI Text
-	DrawText("Start Game", startButton.bounds.x+10, startButton.bounds.y+8, 30, BLACK);
-	DrawText("Controls", detailButton.bounds.x+30, detailButton.bounds.y+8, 30, BLACK);
-
-	DrawText(fileText.c_str(), 10, 450, 10, WHITE);
+	DrawText("Start Game", start.x+10, start.y+8, 30, BLACK);
+	DrawText("Controls", controls.x+35, controls.y+8, 27, BLACK);
 }
 
 GameStates menustate::next()
@@ -72,11 +49,11 @@ GameStates menustate::next()
 	// if click
 	if (IsMouseButtonPressed(0)) {
 		// if within start bounds
-		if (CheckCollisionPointRec(GetMousePosition(), startButton.bounds)) {
+		if (CheckCollisionPointRec(GetMousePosition(), start)) {
 			return GameStates::LEVEL1;
 		}
 		// if within detail bounds
-		if (CheckCollisionPointRec(GetMousePosition(), detailButton.bounds)) {
+		if (CheckCollisionPointRec(GetMousePosition(), controls)) {
 			return GameStates::DETAIL;
 		}
 	}

@@ -64,6 +64,8 @@ public:
 	void pushBack(const T& val);
 	// pop value from back of list
 	void popBack();
+	// resize to given, from front
+	void resize(size_t length);
 
 	// first value in list
 	T& first();
@@ -134,14 +136,13 @@ void LinkedList<T>::popFront() {
 template <typename T>
 void LinkedList<T>::pushBack(const T& val) {
 
-
 	// create new node
-	Node newNode;
-	newNode.data = val;
-	newNode.next = nullptr;
+	Node * newNode = new Node;
+	newNode->data = val;
+	newNode->next = nullptr;
 
 	// get to last value in list
-	Node temp = head; 
+	Node * temp = head; 
 	// while next value
 	while (temp->next != nullptr) {
 		temp = temp->next;
@@ -149,7 +150,7 @@ void LinkedList<T>::pushBack(const T& val) {
 	// set last->next to new
 	temp->next = newNode;
 	// set new->previous to last
-	newNode.previous = * temp; // this could be wrong
+	newNode->previous = temp; // this could be wrong
 	
 }
 
@@ -164,6 +165,28 @@ void LinkedList<T>::popBack() {
 	delete temp->next;
 	// set next to null
 	temp->next = nullptr;
+}
+
+template<typename T>
+void LinkedList<T>::resize(size_t length)
+{
+	Node * temp = head;
+	int count = 0;
+
+	// iterate through
+	while (head->next != nullptr) {
+		head = head->next;
+		count++;
+	}
+
+	while (count < length) {
+		pushBack(0);
+		count++;
+	}
+	while (count > length) {
+		popBack();
+		count--;
+	}
 }
 
 template <typename T>
