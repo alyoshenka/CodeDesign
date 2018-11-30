@@ -41,6 +41,11 @@ int main() {
 		list1.pushFront(4);
 		list1.pushFront(5);
 
+		// tests that pop functions don't error when called on empty list
+		/*for (int i = 0; i < 10; i++) {
+			list1.popBack();
+		}*/
+
 		std::cout << "5=" << list1.first() << std::endl; // 5
 		std::cout << "1=" << list1.last() << std::endl; // 1
 		std::cout << "5=" << list1.count() << std::endl; // 5

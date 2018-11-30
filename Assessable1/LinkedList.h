@@ -124,8 +124,19 @@ void LinkedList<T>::pushFront(const T& val) {
 
 template <typename T>
 void LinkedList<T>::popFront() { 
-	// set second node's previous pointer to null
-	head->next->previous = nullptr;	
+
+	// edge cases
+	// if nothing there
+	if (head == nullptr) {
+		return;
+	}
+	// if only one thing there
+	if (head->next == nullptr) {
+		delete head;
+		head = nullptr; // just in case
+		return;
+	}
+
 	// create temporary pointer to second node
 	Node temp;
 	temp.next = head->next;
@@ -165,6 +176,17 @@ void LinkedList<T>::pushBack(const T& val) {
 
 template <typename T>
 void LinkedList<T>::popBack() {
+
+	// edge cases
+	if (head == nullptr) {
+		return;
+	}
+	if (head->next == nullptr) {
+		delete head;
+		head = nullptr; // just in case
+		return;
+	}
+
 	// iterate to one back from back of list
 	Node * temp = head;
 	while (temp->next->next != nullptr) {
