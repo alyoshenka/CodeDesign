@@ -45,7 +45,9 @@ public:
 	void pop_front();
 	// add item at index
 	void add(T item, size_t idx); 
-	// was it removed successfully?
+	// removes by value, true if successful
+	bool removeByVal(T val);
+	// remove by index
 	bool remove(size_t idx);
 	// preserves order
 	bool removeOrdered(size_t idx);
@@ -140,6 +142,19 @@ void DynamicArray<T>::add(T item, size_t idx)
 	// put element in
 	arr[idx] = item;
 
+}
+
+template<typename T>
+bool DynamicArray<T>::removeByVal(T val)
+{
+	// store boolean of other remove
+	bool temp;
+	for (int i = 0; i < arrSize; i++) {
+		if (arr[i] == val) {
+			temp = remove(i);
+		}
+	}
+	return temp;
 }
 
 template<typename T>

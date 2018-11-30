@@ -91,6 +91,8 @@ int main() {
 		arr1.show(); // 5 6 9 10 8
 		arr1.removeOrdered(2);
 		arr1.show(); // 5 6 10 8
+		arr1.removeByVal(10);
+		arr1.show(); // 5 6 8
 		arr1.clear();
 		arr1.show(); // nothing
 
