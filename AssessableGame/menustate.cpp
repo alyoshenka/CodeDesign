@@ -40,8 +40,8 @@ void menustate::draw()
 	DrawRectangleRec(controls, BLUE);
 
 	// UI Text
-	DrawText("Start Game", start.x+10, start.y+8, 30, BLACK);
-	DrawText("Controls", controls.x+35, controls.y+8, 27, BLACK);
+	DrawText("Start Game", start.x+12, start.y+10, 30, BLACK);
+	DrawText("Controls", controls.x+45, controls.y+12, 27, BLACK);
 }
 
 GameStates menustate::next()
@@ -50,7 +50,7 @@ GameStates menustate::next()
 	if (IsMouseButtonPressed(0)) {
 		// if within start bounds
 		if (CheckCollisionPointRec(GetMousePosition(), start)) {
-			return GameStates::LEVEL1;
+			return GameStates::LEVEL;
 		}
 		// if within detail bounds
 		if (CheckCollisionPointRec(GetMousePosition(), controls)) {

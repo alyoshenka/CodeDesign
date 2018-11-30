@@ -34,7 +34,7 @@ void detailstate::draw()
 
 	DrawText(fileText.c_str(), 10, 10, 20, BLUE);
 
-	DrawText("[ ENTER ] to return", 100, 300, 30, BLACK);
+	DrawText("[ ENTER ] to return", 300, 350, 30, GREEN);
 }
 
 GameStates detailstate::next()

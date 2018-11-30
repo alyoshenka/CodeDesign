@@ -16,13 +16,13 @@ class Octopus
 	// speed downwards due to gravity
 	float waterGravity;	
 
-	// size to win
-	// growth each time
+	// shink value each time
 	float modifier;
 
 public:
 
 	float size;	
+	// source rec of texture
 	Rectangle sourceRec;
 	Vector2 position;
 

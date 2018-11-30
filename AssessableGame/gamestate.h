@@ -8,9 +8,8 @@ enum GameStates {
 	NONE,
 	MENU,
 	DETAIL,
-	CONTROLS,
 	GAME,
-	LEVEL1,
+	LEVEL,
 	WIN,
 	LOSE
 };

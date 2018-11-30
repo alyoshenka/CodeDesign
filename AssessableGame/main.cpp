@@ -12,7 +12,7 @@
 
 // To Do
 // check for memory leaks
-// check on unloading fish prototypes
+// check on unloading fish prototypes (mem leak)
 
 int main() {
 

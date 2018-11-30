@@ -136,7 +136,7 @@
     <ClCompile Include="FishManager.cpp" />
     <ClCompile Include="gameoverstate.cpp" />
     <ClCompile Include="gamestate.cpp" />
-    <ClCompile Include="level1.cpp" />
+    <ClCompile Include="levelstate.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menustate.cpp" />
     <ClCompile Include="Octopus.cpp" />
@@ -148,7 +148,7 @@
     <ClInclude Include="FishManager.h" />
     <ClInclude Include="gameoverstate.h" />
     <ClInclude Include="gamestate.h" />
-    <ClInclude Include="level1.h" />
+    <ClInclude Include="levelstate.h" />
     <ClInclude Include="menustate.h" />
     <ClInclude Include="Octopus.h" />
     <ClInclude Include="winstate.h" />

@@ -5,13 +5,12 @@ Octopus::Octopus()
 	spriteL = LoadTexture("assets/fishL.png");
 	spriteR = LoadTexture("assets/fishR.png");
 	spriteC = spriteR;
-	sourceRec = {0.0f, 0.0f, (float)spriteR.width, (float)spriteR.height};
+	sourceRec = {0.0f, 1.0f, (float)spriteR.width, (float)spriteR.height - 1}; // the 1 gets rid of a single pixel border
 	position = { 0, 0 };
 	speed = 300.0f;
 	waterGravity = speed / 10;
 
 	size = 0.5f;
-	// trying to get 3x bigger
 	modifier = 0.02;
 }
 
@@ -87,7 +86,6 @@ void Octopus::update()
 void Octopus::shrink()
 {
 	size *= 1 - modifier;
-	// health -= modifier;
 }
 
 Rectangle Octopus::boundingBox()

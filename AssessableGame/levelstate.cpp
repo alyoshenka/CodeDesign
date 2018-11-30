@@ -1,6 +1,6 @@
-#include "level1.h"
+#include "levelstate.h"
 
-level1::level1()
+levelstate::levelstate()
 {
 	level = 1;
 	healthSprite = LoadTexture("assets/fishR.png");
@@ -20,7 +20,7 @@ level1::level1()
 	}
 }
 
-level1::~level1()
+levelstate::~levelstate()
 {
 	UnloadTexture(healthSprite);
 	UnloadTexture(seaweedG);
@@ -30,7 +30,7 @@ level1::~level1()
 	delete[] isGreen;
 }
 
-void level1::update()
+void levelstate::update()
 {
 	player.update();
 	enemyInstance.update();
@@ -51,7 +51,7 @@ void level1::update()
 	}
 }
 
-void level1::draw()
+void levelstate::draw()
 {
 	// just in case
 	ClearBackground({ 20, 231, 255, 0 });
@@ -97,7 +97,7 @@ void level1::draw()
 	enemyInstance.draw();
 }
 
-GameStates level1::next()
+GameStates levelstate::next()
 {
 	if (player.size < 0.4) {
 		return GameStates::LOSE;
@@ -108,5 +108,5 @@ GameStates level1::next()
 		return GameStates::WIN;
 	}
 
-	return GameStates::LEVEL1;
+	return GameStates::LEVEL;
 }

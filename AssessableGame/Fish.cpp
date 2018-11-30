@@ -47,12 +47,12 @@ void Fish::randomizeValues()
 		(float)GetRandomValue(0, GetScreenHeight() - sprite.height * size) };
 
 	speed = GetRandomValue(100, 150);
-
 	waveMod = GetRandomValue(1, 10) / 3;
 }
 
 Rectangle Fish::boundingBox()
 {
+	// scaled down so you really have to hit the enemies for a collision to occur
 	// hitbox modifier
 	float a = 0.75;
 	return { position.x, position.y, sprite.width * size * a, sprite.height * size * a };

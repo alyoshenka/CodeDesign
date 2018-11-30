@@ -27,9 +27,6 @@
     <ClCompile Include="Octopus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="level1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Fish.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,6 +46,9 @@
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="winstate.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="levelstate.cpp">
       <Filter>Source Files\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,8 +77,8 @@
     <ClInclude Include="gamestate.h">
       <Filter>Header Files\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="level1.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="levelstate.h">
+      <Filter>Header Files\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

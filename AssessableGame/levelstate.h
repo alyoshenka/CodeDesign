@@ -13,7 +13,7 @@
 #endif
 
 
-class level1 : public gamestate
+class levelstate : public gamestate
 {
 	Octopus player;
 
@@ -36,8 +36,8 @@ class level1 : public gamestate
 
 public:
 
-	level1();
-	~level1();
+	levelstate();
+	~levelstate();
 
 	void update();
 	virtual void draw();
