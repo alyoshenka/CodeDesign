@@ -34,13 +34,20 @@ void FishManager::addFish(size_t level)
 	// if space
 	for (int i = 0; i < arrCapacity; i++) {
 		if (free[i]) {
-			// make smaller fish slightly more probable
-			int f = GetRandomValue(1, level + prototypeCount);
-			if (f > level) {
-				fishArr[i] = fishPrototypes[0];
+			// make one size smaller fish slightly more probable
+			int f = GetRandomValue(1, level + prototypeCount * 2);
+			if (f > level + prototypeCount - 2) {
+				// one size smaller
+				fishArr[i] = fishPrototypes[level - 1];
+			}
+			else if(f > level - 1){
+				// one size larger
+				fishArr[i] = fishPrototypes[level];
 			}
 			else {
+				// random
 				fishArr[i] = fishPrototypes[f];
+				// fishArr[i] = fishPrototypes[level];
 			}
 			free[i] = false;
 		}
@@ -90,7 +97,7 @@ float FishManager::checkForCollision(Rectangle player)
 			if (player.height >= fishArr[i].boundingBox().height) {
 
 				// store val
-				int temp = fishArr[i].boundingBox().height;
+				int temp = fishArr[i].boundingBox().height * (fishArr[i].boundingBox().height / player.height);
 				// get rid of this specific fish
 				pop(i);
 				// player bigger

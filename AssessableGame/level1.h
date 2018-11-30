@@ -25,6 +25,15 @@ class level1 : public gamestate
 	// scale down health texture
 	float hSize;
 
+	// x val of seaweed
+	int * seaweedPos;
+	// is green texture
+	bool * isGreen;
+	// number of clumps of seaweed
+	int seaweedCount;
+	Texture2D seaweedP;
+	Texture2D seaweedG;
+
 public:
 
 	level1();

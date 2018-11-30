@@ -12,9 +12,7 @@
 
 // To Do
 // check for memory leaks
-// make later advancement harder
 // check on unloading fish prototypes
-// normalize player speed
 
 int main() {
 

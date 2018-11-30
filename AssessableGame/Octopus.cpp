@@ -33,31 +33,32 @@ void Octopus::update()
 
 	// movement
 	if (IsKeyDown(KEY_A)) {
-		position.x -= speed * GetFrameTime();
-		// movement.x -= speed * GetFrameTime();
+		// position.x -= speed * GetFrameTime();
+		movement.x -= speed * GetFrameTime();
 		spriteC = spriteL;
 	}
 	if (IsKeyDown(KEY_D)) {
-		position.x += speed * GetFrameTime();
-		// movement.x += speed * GetFrameTime();
+		// position.x += speed * GetFrameTime();
+		movement.x += speed * GetFrameTime();
 		spriteC = spriteR;
 	}
 	if (IsKeyDown(KEY_W)) {
-		position.y -= speed * GetFrameTime();
-		// movement.y -= speed * GetFrameTime();
+		// position.y -= speed * GetFrameTime();
+		movement.y -= speed * GetFrameTime();
 	}
 	if (IsKeyDown(KEY_S)) {
-		position.y += speed * GetFrameTime();
-		// movement.y += speed * GetFrameTime();
+		// position.y += speed * GetFrameTime();
+		movement.y += speed * GetFrameTime();
 	}
 
 	// to normalize a vector, simply divide each component by its magnitude
 	// normalize
-	/*float magnitude = sqrt(movement.x * movement.x + movement.y * movement.y);
-	if (magnitude > 0) {
-		movement.x /= magnitude;
-		movement.y /= magnitude;
-	}*/
+	float magnitude = sqrt(movement.x * movement.x + movement.y * movement.y);
+	if (magnitude != 0) {
+		float normalizingFactor = speed * GetFrameTime() / magnitude;
+		movement.x *= normalizingFactor;
+		movement.y *= normalizingFactor;
+	}
 	
 
 	// now finally increment
