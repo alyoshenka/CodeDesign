@@ -51,9 +51,12 @@ public:
 	bool remove(size_t idx);
 	// preserves order
 	bool removeOrdered(size_t idx);
+	// allocate new space
 	void resize(size_t newSize);
 	// resize by growth factor if needed
 	void resize();
+	// resize vec capacity to match size
+	void shrinkToFit();
 	// clears but maintains size
 	void clear();
 	// returns arrSize
@@ -200,9 +203,15 @@ void DynamicArray<T>::resize(size_t newCapacity)
 
 	// change vals
 	arrCapacity = newCapacity;
+	if (arrSize >= arrCapacity) {
+		arrSize = arrCapacity - 1;
+	}
 
 	// copy data over
-	for (int i = 0; i <= arrSize; i++) {
+	for (int i = 0; i < newCapacity; i++) { // cuts off end if resized smaller
+		if (i >= arrSize) {
+			break;
+		}
 		newArr[i] = arr[i];
 	}
 
@@ -219,6 +228,12 @@ void DynamicArray<T>::resize()
 	if (arrSize >= arrCapacity) {
 		resize(arrCapacity * GROWTH_FACTOR);
 	}	
+}
+
+template<typename T>
+void DynamicArray<T>::shrinkToFit()
+{
+	resize(arrSize);
 }
 
 template<typename T>

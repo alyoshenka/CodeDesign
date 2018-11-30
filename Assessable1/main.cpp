@@ -115,8 +115,10 @@ int main() {
 		arr2.show();
 		std::cout << "Merge sort descending" << std::endl;
 		arr2.mergeSortDescending(0, arr2.sizeInUse() - 1);
+		arr2.shrinkToFit();
 		arr2.show();
 		std::cout << "Insertion sort ascending" << std::endl;
+		arr2.resize(5);
 		arr2.insertionSortAscending();
 		arr2.show();
 
