@@ -103,7 +103,7 @@ GameStates levelstate::next()
 		return GameStates::LOSE;
 	}
 
-	if (player.size > 2.5) {
+	if (player.size > 5) { // 2.5
 		// gamestate::score = player.currentSize;
 		return GameStates::WIN;
 	}

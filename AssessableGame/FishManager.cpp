@@ -7,9 +7,9 @@ FishManager::FishManager()
 	free = new bool[arrCapacity];
 	
 	prototypeCount = 4;
-	fishPrototypes = new Fish[prototypeCount];
+	fishPrototypes = new Fish[prototypeCount]; // and it initializes this fish up here
 	fishPrototypes[0] = *(new Fish()); // default fish
-	fishPrototypes[1] = *(new Fish("assets/fishB.png", 250.0f, 1.0f));
+	fishPrototypes[1] = *(new Fish("assets/fishB.png", 250.0f, 1.0f)); // I create this fish
 	fishPrototypes[2] = *(new Fish("assets/fishY.png", 250.0f, 1.5f));
 	fishPrototypes[3] = *(new Fish("assets/fishG.png", 250.0f, 2.0f));
 

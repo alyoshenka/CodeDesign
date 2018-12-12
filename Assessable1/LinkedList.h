@@ -217,7 +217,7 @@ void LinkedList<T>::resize(size_t length)
 	}
 	
 	while (count < length) {
-		pushBack(0);
+		pushBack(T); // pushing back type instead of 0 works, in theory
 		count++;
 	}
 	while (count > length) {
