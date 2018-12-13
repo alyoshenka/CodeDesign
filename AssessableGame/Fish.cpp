@@ -25,6 +25,7 @@ Fish::Fish(std::string _sprite, float _speed, float _size) : Fish::Fish()
 
 Fish::~Fish()
 {
+	// needs to be managed
 	UnloadTexture(sprite);
 }
 
@@ -72,6 +73,46 @@ Fish& Fish::operator=(const Fish & rhs)
 	size = rhs.size;
 	randomizeValues();
 
+	return *this;
+}
+
+Fish::Fish(Fish && rhs)
+{
+	// "you initialise members with the corresponding members from the dying object"
+	// so rhs = this
+	// so backwards copy constructor?
+
+	rhs.sprite = sprite;
+	rhs.speed = speed;
+	rhs.size = size;
+	rhs.randomizeValues();
+
+	// return rhs;
+	// constructor does not return val
+	std::move(rhs);
+}
+
+Fish & Fish::operator=(Fish && rhs)
+{
+	// "you initialise members with the corresponding members from the dying object"
+	// so rhs = this
+	// so backwards copy constructor?
+
+	// if (rhs != this) { put everything here }
+
+	// use pointers???
+
+	rhs.sprite = sprite;
+	rhs.speed = speed;
+	rhs.size = size;
+	rhs.randomizeValues();
+
+	// sprite = nullptr;
+
+	std::move(rhs);
+
+	// delete this;
+	// return std::move(rhs);
 	return *this;
 }
 

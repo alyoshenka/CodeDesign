@@ -6,14 +6,22 @@ FishManager::FishManager()
 	fishArr = new Fish[arrCapacity];
 	free = new bool[arrCapacity];
 	
+	// Terry did I do it correctly?
 	prototypeCount = 4;
-	fishPrototypes = new Fish[prototypeCount]; // and it initializes this fish up here
+	fishPrototypes = new Fish[prototypeCount];
+	// && ?
+	fishPrototypes[0] = Fish(); // default fish
+	fishPrototypes[1] = Fish("assets/fishB.png", 250.0f, 1.0f); 
+	fishPrototypes[2] = Fish("assets/fishY.png", 250.0f, 1.5f);
+	fishPrototypes[3] = Fish("assets/fishG.png", 250.0f, 2.0f);
+	/*
 	fishPrototypes[0] = *(new Fish()); // default fish
 	fishPrototypes[1] = *(new Fish("assets/fishB.png", 250.0f, 1.0f)); // I create this fish
 	fishPrototypes[2] = *(new Fish("assets/fishY.png", 250.0f, 1.5f));
 	fishPrototypes[3] = *(new Fish("assets/fishG.png", 250.0f, 2.0f));
+	*/
 
-	for (int i = 0; i < arrCapacity; i++) {
+	for (size_t i = 0; i < arrCapacity; i++) {
 		free[i] = false;
 		fishArr[i] = fishPrototypes[0];
 		fishArr[i].randomizeValues();
@@ -27,6 +35,9 @@ FishManager::~FishManager()
 	delete[] fishPrototypes;
 	delete[] free;
 	// assuming this calls Fish deconstructor and taks care of unloading textures
+
+	// after changing to statically allocated fishPrototypes, fish 
+	// deconstructor will be called and textures will unload (in theory)
 }
 
 void FishManager::addFish(size_t level)

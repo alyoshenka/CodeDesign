@@ -41,7 +41,13 @@ public:
 	// return bounding box (to test for collision)
 	Rectangle boundingBox();
 
-	// copy constructor
+	// copy assignment operator
 	Fish& operator = (const Fish & rhs);
+	
+	// move semantics
+	// move constructor
+	Fish(Fish && rhs);
+	// move assignment operator
+	Fish& operator = (Fish && rhs);
 };
 
