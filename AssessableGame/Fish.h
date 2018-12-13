@@ -19,24 +19,21 @@ class Fish
 	float waveMod;
 
 public:
-	// made public for easy access elsewhere
-	
+	// made public for easy access elsewhere	
 	Texture2D sprite;
-	// Texture2D * spritePtr;
 	float speed;
 	// how big it is, relative to texture
 	float size;
 	Vector2 position;
 
 	Fish();
-	Fish(std::string filePath, float _speed, float _size);
+	Fish(float _speed, float _size);
 	~Fish();
 
 	void update();
 	void draw();
 
 	void randomizeValues();
-	// void randomizeValues(size_t level);
 
 	// return bounding box (to test for collision)
 	Rectangle boundingBox();

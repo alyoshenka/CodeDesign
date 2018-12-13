@@ -6,20 +6,23 @@ FishManager::FishManager()
 	fishArr = new Fish[arrCapacity];
 	free = new bool[arrCapacity];
 	
-	// Terry did I do it correctly?
+	f1 = LoadTexture("assets/fishP.png");
+	f2 = LoadTexture("assets/fishB.png");
+	f3 = LoadTexture("assets/fishY.png");
+	f4 = LoadTexture("assets/fishG.png");
+
 	prototypeCount = 4;
 	fishPrototypes = new Fish[prototypeCount];
-	// && ?
+
 	fishPrototypes[0] = Fish(); // default fish
-	fishPrototypes[1] = Fish("assets/fishB.png", 250.0f, 1.0f); 
-	fishPrototypes[2] = Fish("assets/fishY.png", 250.0f, 1.5f);
-	fishPrototypes[3] = Fish("assets/fishG.png", 250.0f, 2.0f);
-	/*
-	fishPrototypes[0] = *(new Fish()); // default fish
-	fishPrototypes[1] = *(new Fish("assets/fishB.png", 250.0f, 1.0f)); // I create this fish
-	fishPrototypes[2] = *(new Fish("assets/fishY.png", 250.0f, 1.5f));
-	fishPrototypes[3] = *(new Fish("assets/fishG.png", 250.0f, 2.0f));
-	*/
+	fishPrototypes[1] = Fish(250.0f, 1.0f);
+	fishPrototypes[2] = Fish(250.0f, 1.5f);
+	fishPrototypes[3] = Fish(250.0f, 2.0f);
+
+	fishPrototypes[0].sprite = f1;
+	fishPrototypes[1].sprite = f2;
+	fishPrototypes[2].sprite = f3;
+	fishPrototypes[3].sprite = f4;
 
 	for (size_t i = 0; i < arrCapacity; i++) {
 		free[i] = false;
@@ -30,7 +33,12 @@ FishManager::FishManager()
 
 FishManager::~FishManager()
 {
-	// manually unload prototype textures?
+	// manually unload prototype textures
+	UnloadTexture(f1);
+	UnloadTexture(f2);
+	UnloadTexture(f3);
+	UnloadTexture(f4);
+
 	delete[] fishArr;
 	delete[] fishPrototypes;
 	delete[] free;

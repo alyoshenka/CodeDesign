@@ -2,20 +2,15 @@
 
 Fish::Fish()
 {
-	sprite = LoadTexture("assets/fishP.png");
-	// spritePtr = &sprite;
+	// sprite = LoadTexture("assets/fishP.png");
 	size = 0.4f;
 	waveMath = 0.0f;
 
 	randomizeValues();
 }
 
-Fish::Fish(std::string _sprite, float _speed, float _size) : Fish::Fish()
+Fish::Fish(float _speed, float _size) : Fish::Fish()
 {
-	UnloadTexture(sprite);
-
-	sprite = LoadTexture(_sprite.c_str());
-	// spritePtr = &sprite;
 	speed = _speed;
 	size = _size;
 	// so it doesn't "peek" the edge of the screen
@@ -25,8 +20,8 @@ Fish::Fish(std::string _sprite, float _speed, float _size) : Fish::Fish()
 
 Fish::~Fish()
 {
-	// needs to be managed
-	UnloadTexture(sprite);
+	// in fishManager
+	// UnloadTexture(sprite);
 }
 
 void Fish::update()
@@ -61,13 +56,8 @@ Rectangle Fish::boundingBox()
 
 Fish& Fish::operator=(const Fish & rhs)
 {
-	// delete something here
-	// UnloadTexture(sprite);
-
 	// init vals
-	sprite = rhs.sprite; // this is the problem
-	// spritePtr = rhs.spritePtr;
-	// sprite = *spritePtr;
+	sprite = rhs.sprite;
 
 	speed = rhs.speed;
 	size = rhs.size;
@@ -78,41 +68,21 @@ Fish& Fish::operator=(const Fish & rhs)
 
 Fish::Fish(Fish && rhs)
 {
-	// "you initialise members with the corresponding members from the dying object"
-	// so rhs = this
-	// so backwards copy constructor?
-
-	rhs.sprite = sprite;
-	rhs.speed = speed;
-	rhs.size = size;
-	rhs.randomizeValues();
-
-	// return rhs;
-	// constructor does not return val
-	std::move(rhs);
+	sprite = *&rhs.sprite;
+	speed = rhs.speed;
+	size = rhs.size;
+	randomizeValues();
 }
 
 Fish & Fish::operator=(Fish && rhs)
 {
 	// "you initialise members with the corresponding members from the dying object"
-	// so rhs = this
-	// so backwards copy constructor?
 
-	// if (rhs != this) { put everything here }
+	sprite = rhs.sprite;
+	speed = rhs.speed;
+	size = rhs.size;
+	randomizeValues();
 
-	// use pointers???
-
-	rhs.sprite = sprite;
-	rhs.speed = speed;
-	rhs.size = size;
-	rhs.randomizeValues();
-
-	// sprite = nullptr;
-
-	std::move(rhs);
-
-	// delete this;
-	// return std::move(rhs);
 	return *this;
 }
 

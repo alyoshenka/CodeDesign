@@ -20,6 +20,11 @@ class FishManager
 	// number of prototype fish
 	size_t prototypeCount;
 
+	Texture2D f1;
+	Texture2D f2;
+	Texture2D f3;
+	Texture2D f4;
+
 public:
 
 	// fish factory array
